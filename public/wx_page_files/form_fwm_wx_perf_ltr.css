@@ -1,0 +1,57 @@
+.css_weath_press_alt_label {text-align:right;}
+.css_weath_press_alt_line {text-align:right;}
+.css_weath_press_alt_obj {text-align:right;}
+.css_weath_dens_alt_label {text-align:right;}
+.css_weath_dens_alt_line {text-align:right;}
+.css_weath_dens_alt_obj {text-align:right;}
+.css_weath_surf_wind_label {text-align:right;}
+.css_weath_surf_wind_line {text-align:right;}
+.css_weath_surf_wind_obj {text-align:right;}
+.css_weath_x_wind_label {text-align:right;}
+.css_weath_x_wind_line {text-align:right;}
+.css_weath_x_wind_obj {text-align:right;}
+.css_takeoff_grnd_roll_label {text-align:right;}
+.css_takeoff_grnd_roll_line {text-align:right;}
+.css_takeoff_grnd_roll_obj {text-align:right;}
+.css_takeoff_gr_over50_label {text-align:right;}
+.css_takeoff_gr_over50_line {text-align:right;}
+.css_takeoff_gr_over50_obj {text-align:right;}
+.css_takeoff_max_climb_label {text-align:right;}
+.css_takeoff_max_climb_line {text-align:right;}
+.css_takeoff_max_climb_obj {text-align:right;}
+.css_land_arr_distance_label {text-align:right;}
+.css_land_arr_distance_line {text-align:right;}
+.css_land_arr_distance_obj {text-align:right;}
+.css_land_best_glide_label {text-align:right;}
+.css_land_best_glide_line {text-align:right;}
+.css_land_best_glide_obj {text-align:right;}
+.css_land_va_value_label {text-align:right;}
+.css_land_va_value_line {text-align:right;}
+.css_land_va_value_obj {text-align:right;}
+.css_me_se_roc_tpa_label {text-align:right;}
+.css_me_se_roc_tpa_line {text-align:right;}
+.css_me_se_roc_tpa_obj {text-align:right;}
+.css_me_accel_stop_dist_label {text-align:right;}
+.css_me_accel_stop_dist_line {text-align:right;}
+.css_me_accel_stop_dist_obj {text-align:right;}
+.css_me_se_serv_ceiling_label {text-align:right;}
+.css_me_se_serv_ceiling_line {text-align:right;}
+.css_me_se_serv_ceiling_obj {text-align:right;}
+.css_me_abs_ceiling_label {text-align:right;}
+.css_me_abs_ceiling_line {text-align:right;}
+.css_me_abs_ceiling_obj {text-align:right;}
+.css_dummy1_label { }
+.css_dummy1_line { }
+.css_dummy1_obj { }
+.css_takeoff_label {color:#000099;}
+.css_takeoff_line { }
+.css_takeoff_obj { }
+.css_landing_label {color:#000099;}
+.css_landing_line { }
+.css_landing_obj { }
+.css_mengine_label {color:#000099;text-align:left;}
+.css_mengine_line { }
+.css_mengine_obj { }
+.css_lbl_caution_label { }
+.css_lbl_caution_line {text-align:justify;}
+.css_lbl_caution_obj { }
