@@ -11,6 +11,7 @@
 	"request": "2.81.x",
     "xml2js": "0.4.x",
 	"ejs": "~2.4.1",
-	"bower" : "~1.7.1"
+	"bower" : "~1.7.1",
+	"node-schedule" : "1.2.3"
   }
 }
