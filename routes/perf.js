@@ -15,7 +15,7 @@ var xml2js = require('xml2js');
 var parser = new xml2js.Parser();
 
 var metar_data, metar_temp, metar_alti, metar_wind, metar_windVel, pa, da, crossWind1, crossWind2, Perf152_data_TO_Gnd_Roll, Perf152_data_TO_50_Clr, Perf152_data_Land_Gnd_Roll, Perf152_data_Rate_Of_Climb, Perf172_data_TO_Gnd_Roll, Perf172_data_TO_50_Clr, Perf172_data_Land_Gnd_Roll, Perf172_data_Rate_Of_Climb;
-
+var taf_data,metar_flight_category;
 // 페이지 콜 부분
 exports.index = function(req, res) {
 	readData(function() {
@@ -24,6 +24,7 @@ exports.index = function(req, res) {
 			pa : pa,
 			da : da,
 			metar : metar_data,
+			taf : taf_data,
 			surfaceWind : metar_windVel,
 			crossWind1 : crossWind1,
 			crossWind2 : crossWind2,
@@ -34,16 +35,30 @@ exports.index = function(req, res) {
 			Perf172_data_TO_Gnd_Roll : Perf172_data_TO_Gnd_Roll,
 			Perf172_data_TO_50_Clr : Perf172_data_TO_50_Clr,
 			Perf172_data_Land_Gnd_Roll : Perf172_data_Land_Gnd_Roll,
-			Perf172_data_Rate_Of_Climb : Perf172_data_Rate_Of_Climb
+			Perf172_data_Rate_Of_Climb : Perf172_data_Rate_Of_Climb,
+			metar_flight_category: metar_flight_category
+			
 
 		});
 	});
+	var time = new Date(); 
+	console.log("!!!Page Accessed "+ time.getDay() + "th," +  time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()); 
+
 
 };
 
 
+
 var j = schedule.scheduleJob(rule, function() {
-	//console.log('...');
+	var time = new Date(); 
+	if(time.getMinutes()==0)
+		{
+		console.log(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()); 
+		}
+	if(time.getMinutes()==30)
+	{
+	console.log(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()); 
+	}
 	// METAR
 	var url = {
 		url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=2",
@@ -64,15 +79,38 @@ var j = schedule.scheduleJob(rule, function() {
 									var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
 									// 처리
 									var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
+									var flight_category = result.response.data[0].METAR[0].flight_category;
+									
+									
 
 									metar_data = metar_raw_text;
 									metar_temp = temper;
 									metar_alti = alti;
 									metar_wind = wind;
 									metar_windVel = windVel;
+									metar_flight_category = flight_category ;
 								})
 			})
 
+			// METAR
+	var url = {
+		url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=4",
+		json : false
+	};
+
+	request(
+			url,
+			function(err, res, html) {
+				parser
+						.parseString(
+								html,
+								function(err, result) {
+
+									var taf_raw_text = result.response.data[0].TAF[0].raw_text[0];
+									
+									taf_data = taf_raw_text;
+								})
+			})
 });
 // 콜백 해결 구분
 
