@@ -13,9 +13,17 @@ var request = require('request');
 // xml
 var xml2js = require('xml2js');
 var parser = new xml2js.Parser();
+//http crowing
+var cheerio = require('cheerio');
+
 
 var metar_data, metar_temp, metar_alti, metar_wind, metar_windVel, pa, da, crossWind1, crossWind2, Perf152_data_TO_Gnd_Roll, Perf152_data_TO_50_Clr, Perf152_data_Land_Gnd_Roll, Perf152_data_Rate_Of_Climb, Perf172_data_TO_Gnd_Roll, Perf172_data_TO_50_Clr, Perf172_data_Land_Gnd_Roll, Perf172_data_Rate_Of_Climb;
 var taf_data,metar_flight_category;
+var area_forecast = '',
+	wind_aloft = '',
+	notam_url = 'https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=DOMESTIC&retrieveLocId=HIO&actionType=notamRetrievalByICAOs';
+
+
 // 페이지 콜 부분
 exports.index = function(req, res) {
 	readData(function() {
@@ -36,8 +44,25 @@ exports.index = function(req, res) {
 			Perf172_data_TO_50_Clr : Perf172_data_TO_50_Clr,
 			Perf172_data_Land_Gnd_Roll : Perf172_data_Land_Gnd_Roll,
 			Perf172_data_Rate_Of_Climb : Perf172_data_Rate_Of_Climb,
-			metar_flight_category: metar_flight_category
+			metar_flight_category: metar_flight_category,
+			bloco_title_10 : 'Area Forecast',
+			bloco_title_11 : 'Wind_Aloft',
+			bloco_title_12 : 'NOTAM',
+			bloco_title_13 : 'Convective SIGMETs, SIGMETs',
+			bloco_title_14 : 'Surface Analysis',
+			bloco_title_15 : 'Weather Dipiction',
+			bloco_title_16 : 'RADAR Summary',
 			
+			bloco_contents_10 : area_forecast,
+			bloco_contents_11 : wind_aloft,
+			bloco_contents_12 : notam_url,
+			bloco_contents_13 : 'bloco_contents_13',
+			bloco_contents_14 : 'bloco_contents_14',
+			bloco_contents_15 : 'bloco_contents_15',
+			bloco_contents_16 : 'bloco_contents_16'
+			
+			
+			  
 
 		});
 	});
@@ -49,69 +74,100 @@ exports.index = function(req, res) {
 
 
 
-var j = schedule.scheduleJob(rule, function() {
-	var time = new Date(); 
-	if(time.getMinutes()==0)
-		{
-		console.log(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()); 
-		}
-	if(time.getMinutes()==30)
-	{
-	console.log(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()); 
-	}
-	// METAR
-	var url = {
-		url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=2",
-		json : false
-	};
+var j = schedule
+		.scheduleJob(
+				rule,
+				function() {
+					var time = new Date();
+					if (time.getMinutes() == 0) {
+						console.log(time.getHours() + ":" + time.getMinutes()
+								+ ":" + time.getSeconds());
+					}
+					if (time.getMinutes() == 30) {
+						console.log(time.getHours() + ":" + time.getMinutes()
+								+ ":" + time.getSeconds());
+					}
+					// METAR
+					var url = {
+						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=2",
+						json : false
+					};
 
-	request(
-			url,
-			function(err, res, html) {
-				parser
-						.parseString(
-								html,
-								function(err, result) {
+					request(
+							url,
+							function(err, res, html) {
+								parser
+										.parseString(
+												html,
+												function(err, result) {
 
-									var alti = Number(result.response.data[0].METAR[0].altim_in_hg);
-									var temper = Number(result.response.data[0].METAR[0].temp_c);
-									var metar_raw_text = result.response.data[0].METAR[0].raw_text[0];
-									var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
-									// 처리
-									var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
-									var flight_category = result.response.data[0].METAR[0].flight_category;
-									
-									
+													var alti = Number(result.response.data[0].METAR[0].altim_in_hg);
+													var temper = Number(result.response.data[0].METAR[0].temp_c);
+													var metar_raw_text = result.response.data[0].METAR[0].raw_text[0];
+													var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
+													// 처리
+													var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
+													var flight_category = result.response.data[0].METAR[0].flight_category;
 
-									metar_data = metar_raw_text;
-									metar_temp = temper;
-									metar_alti = alti;
-									metar_wind = wind;
-									metar_windVel = windVel;
-									metar_flight_category = flight_category ;
-								})
-			})
+													metar_data = metar_raw_text;
+													metar_temp = temper;
+													metar_alti = alti;
+													metar_wind = wind;
+													metar_windVel = windVel;
+													metar_flight_category = flight_category;
+												})
+							})
 
-			// METAR
-	var url = {
-		url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=4",
-		json : false
-	};
+					// METAR
+					var url = {
+						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=4",
+						json : false
+					};
 
-	request(
-			url,
-			function(err, res, html) {
-				parser
-						.parseString(
-								html,
-								function(err, result) {
+					request(
+							url,
+							function(err, res, html) {
+								parser
+										.parseString(
+												html,
+												function(err, result) {
 
-									var taf_raw_text = result.response.data[0].TAF[0].raw_text[0];
-									
-									taf_data = taf_raw_text;
-								})
-			})
-});
+													var taf_raw_text = result.response.data[0].TAF[0].raw_text[0];
+
+													taf_data = taf_raw_text;
+												});
+							});
+										
+							
+					// af get
+					var url_af = "http://aviationweather.gov/areafcst/data?region=sfo";
+					request(url_af, function (err, res, html) {
+					    if (!err) {
+					        var $ = cheerio.load(html);
+
+					        //데이터 처리
+					        area_forecast = $("pre").html();
+					     
+					    }
+					});
+					
+					
+					
+						// windaloft get
+						var url_loft = "http://aviationweather.gov/windtemp/data?region=sfo";
+						request(url_loft, function (err, res, html) {
+						    if (!err) {
+						        var $ = cheerio.load(html);
+
+						        //데이터 처리
+						        wind_aloft = $("pre").html();
+						     
+						    }
+						});			
+			
+				
+				
+				});
 // 콜백 해결 구분
 
 var readData = function(callback) {
