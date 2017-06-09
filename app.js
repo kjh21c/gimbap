@@ -33,6 +33,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/metar/KHIO', perf.index);
+app.get('/info', routes.info);
 
 
 /*http.createServer(app).listen(app.get('port'), function(){

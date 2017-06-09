@@ -1,4 +1,4 @@
-.scFormPage { background-color: #E7E7E7; background-image: none; opacity: 1; filter: alpha(opacity=100); color: #000000; font-family: Arial, sans-serif; font-size: 13px; margin: 20px 0 20px 0; text-decoration: none }
+.scFormPage { background-color: #E7E7E7; background-image: none; opacity: 1; filter: alpha(opacity=100); color: #000000; font-family: Arial, sans-serif; font-size: 13px; margin: 0px 0 0px 0; text-decoration: none }
 .scFormBorder { background-color: #fff; background-image: none; opacity: 1; filter: alpha(opacity=100); padding: 20px; margin: css_form_moldura_margin; border-collapse: collapse; border-color: #D2D2D2; border-style: solid; border-width: 1px; -moz-border-radius: 20px; -webkit-border-radius: 20px; border-radius: 20px }
 .scFormPageText { color: #000000; font-family: Arial, sans-serif; font-size: 13px; text-decoration: none }
 .scFormHeader { background-image: none; opacity: 1; filter: alpha(opacity=100) }

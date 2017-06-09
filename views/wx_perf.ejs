@@ -3,7 +3,7 @@
 <html dir="LTR">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
- <title>METAR KHIO PA DA</title>
+ <title>METAR Information - Hillsboro Airport for Aircraft Performance Calculation and Weather Prediction</title>
  
  <meta http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT">
  <meta http-equiv="Last-Modified" content="Mon, 29 May 2017 22:45:25 GMT">
@@ -4911,7 +4911,7 @@ function nm_atualiza(x, y)
        else
        {
            Nm_Proc_Atualiz = true;
-           do_ajax_form_fwm_wx_perf_submit_form();
+           do_ajax_form_fwm__perf_submit_form();
        }
     } 
     if (Nm_submit_ok)
@@ -4999,6 +4999,34 @@ function scCssBlur(oHtmlObj)
   document.F1.nmgp_schema_f.value = sLocale;
  }
  </script>
+<!--상단바 --> 
+<table id="main_menu_table" align="center" style="border-collapse: collapse; border-width: 0px; height:100%; width: 100%" cellpadding="0" cellspacing="0">
+<tbody>
+<tr><td style="padding: 0px" valign="top"></td>
+</tr>
+<tr class="scMenuHTableCssAlt" id="idMenuLine"> 
+<td>
+<div id="idDivMenu">
+<ul id="css3menu1" class="topmenu" style="margin-top: 0px;margin-bottom: 0px;">
+  <li class="topmenu topfirst toproot">
+    <a href="../Info"  id="item_9" title="">
+    <span>Information</span>
+    </a>
+    <a href="../METAR/KHIO" >
+    <span>Reload</span>
+    </a>
+  </li>
+</ul>
+</div>
+</td>
+</tr>
+<tr><td style="height:1px; padding: 0px;" bgcolor="#F3F7FB"><img src="../wx_page_files/images/transparent.png" border="0" style="height:1px;"></td></tr>
+</tbody>
+</table>
+
+<!--상단바 끝--> 
+
+ 
 <form name="F1" method="post" action="http://www.flyhaa.com/manifest/form_fwm_wx_perf/" target="_self"> 
 <input type="hidden" name="nm_form_submit" value="1">
 <input type="hidden" name="nmgp_idioma_novo" value="">
@@ -5037,6 +5065,8 @@ var scMsgDefButton = "Ok";
 var scMsgDefClick = "close";
 var scMsgDefScInit = "";
 </script>
+
+
 <table id="main_table_form" align="center" cellpadding="0" cellspacing="0" width="425">
  <tbody><tr>
   <td>
