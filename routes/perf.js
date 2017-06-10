@@ -4,9 +4,12 @@
 //timer
 var schedule = require('node-schedule');
 var rule = new schedule.RecurrenceRule();
-rule.second = [ 0, 10, 20, 30, 40, 50, 5, 15, 25, 35, 45, 55 ];
-; // 매 시간 30분 마다 수행
+rule.second = [ 0, 30, 15, 45];
+ // 매 시간 30분 마다 수행
 
+var schedule2 = require('node-schedule');
+var rule2 = new schedule2.RecurrenceRule();
+rule2.miniute = 1.5;
 
 //http
 var request = require('request');
@@ -15,6 +18,8 @@ var xml2js = require('xml2js');
 var parser = new xml2js.Parser();
 //http crowing
 var cheerio = require('cheerio');
+//phantom
+
 
 
 var metar_data, metar_temp, metar_alti, metar_wind, metar_windVel, pa, da, crossWind1, crossWind2, Perf152_data_TO_Gnd_Roll, Perf152_data_TO_50_Clr, Perf152_data_Land_Gnd_Roll, Perf152_data_Rate_Of_Climb, Perf172_data_TO_Gnd_Roll, Perf172_data_TO_50_Clr, Perf172_data_Land_Gnd_Roll, Perf172_data_Rate_Of_Climb;
@@ -22,7 +27,8 @@ var taf_data,metar_flight_category;
 var area_forecast = '',
 	wind_aloft = '',
 	notam_url = 'https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=DOMESTIC&retrieveLocId=HIO&actionType=notamRetrievalByICAOs';
-
+var $aopa_weather,
+	$aopa_weather_taf;
 
 // 페이지 콜 부분
 exports.index = function(req, res) {
@@ -59,8 +65,9 @@ exports.index = function(req, res) {
 			bloco_contents_13 : 'bloco_contents_13',
 			bloco_contents_14 : 'bloco_contents_14',
 			bloco_contents_15 : 'bloco_contents_15',
-			bloco_contents_16 : 'bloco_contents_16'
-			
+			bloco_contents_16 : 'bloco_contents_16',
+			bloco_contents_metar : $aopa_weather,
+			bloco_contents_taf : $aopa_weather_taf
 			
 			  
 
@@ -164,10 +171,46 @@ var j = schedule
 						     
 						    }
 						});			
-			
-				
+
+						
 				
 				});
+
+
+ // 두번째 스케줄
+var j2 = schedule2.scheduleJob(rule2, function() {
+	// aopa page crowingstart
+	var phantom = require("phantom");
+	var _ph, _page, _outObj;
+	phantom.create().then(function(ph) {
+		_ph = ph;
+		return _ph.createPage();
+	}).then(function(page) {
+		_page = page;
+		return _page.open('https://www.aopa.org/airports/khio');
+	}).then(function(status) {
+		console.log(status);
+		return _page.property('content')
+	}).then(function(content) {
+		// console.log(content);
+		var $ = cheerio.load(content);
+		$('.header').remove();
+		$aopa_weather = $('.metars-here');
+		$aopa_weather_taf = $('.taf-here');
+		//
+		// console.log($aopa_weather.html());
+		var post = [];
+		_page.close();
+		_ph.exit();
+	});
+
+	// aopa crwoing end
+
+
+});
+
+
+
 // 콜백 해결 구분
 
 var readData = function(callback) {

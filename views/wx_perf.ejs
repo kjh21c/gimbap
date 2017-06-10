@@ -20,6 +20,10 @@
  </script>
 
  <link rel="stylesheet" href="../wx_page_files/thickbox.css" type="text/css" media="screen">
+<!--  added css -->
+ <link rel="stylesheet" href="../wx_page_files/wxcore.css" type="text/css" media="screen">
+ <link rel="stylesheet" href="../wx_page_files/common.css" type="text/css" media="screen">
+
  <script type="text/javascript">
   var sc_pathToTB = '/wx_page_files/';
   var sc_blockCol = 'scriptcase__NM__btn__NM__scriptcase8_BlueWood__NM__tree_menos_f.png';
@@ -5104,7 +5108,10 @@ var scMsgDefScInit = "";
 
    </tr>
   <tr><td>
-  	<h2><%= metar%></h2>
+    <%-bloco_contents_metar%>
+    <%-bloco_contents_taf%>
+    
+  	<p id="metar_data"><%= metar%></p>
   	<p id="taf_data"><%= taf%></p>
   	<p style="color:red">All These values below can be USED ONLY for Refereance</p>
   </td>
@@ -5839,7 +5846,7 @@ var scMsgDefScInit = "";
 								<td colspan=2>
 									<!-- contents here --> 
 									<img width="600" src="http://aviationweather.gov/data/iffdp/2020.gif">
-									
+																		
 								</td>
 							</tr>
 						</tbody>
