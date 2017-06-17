@@ -1,0 +1,75 @@
+li{
+	 list-style-type:none;
+	
+}
+
+ul{
+	    -webkit-padding-start: 00px;
+}
+p#taf_data{
+	font-size:8px;
+	-webkit-margin-before: 0em;
+    -webkit-margin-after: 0.5em;
+    height:0px;
+      visibility: hidden !important;
+}
+p#metar_data{
+	font-size:13px;
+	font-weight:bold;
+	-webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.2em;
+}
+.taf-forecast{
+	border-spacing : 0 ;
+	
+}
+
+
+.metar-ct, .taf-ct, .taf-forecast {
+	display: table-row;
+	width: 100%;
+	list-style: none;
+	clear: left;
+	overflow: auto;
+}
+
+.metar-col, .taf-col, .taf-forecast-col {
+	display: table-cell;
+	padding: 1px;
+	margin-right: 5px;
+}
+
+.metar-col-info {
+	width: 21%;
+}
+
+.metar-col-time {
+	width: 24%;
+}
+
+.metar-col-wind {
+	width: 35%;
+}
+
+.metar-col .winds.bna span, .taf-forecast-col .winds.bna span {
+	background: transparent;
+	display: none;
+}
+
+.taf-col-info {
+	width: 70px;
+}
+
+.taf-col.taf-col-body {
+	display: table-cell;
+	margin-right: 0;
+}
+
+p.metar-raw, .taf-raw p {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+.taf-raw .taf-col-2 {
+	text-align: right;
+}

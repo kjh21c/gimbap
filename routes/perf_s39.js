@@ -27,7 +27,7 @@ var temperature, pressure, elevation;
 var taf_data,metar_flight_category;
 var area_forecast = '',
 	wind_aloft = '',
-	notam_url = 'https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=DOMESTIC&retrieveLocId=HIO&actionType=notamRetrievalByICAOs';
+	notam_url = 'https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=DOMESTIC&retrieveLocId=S39&actionType=notamRetrievalByICAOs';
 var $aopa_weather,
 	$aopa_weather_taf;
 
@@ -35,10 +35,10 @@ var $aopa_weather,
 exports.index = function(req, res) {
 	readData(function() {
 		res.render('wx_perf', {
-			title : 'KHIO METAR & 152 Perf. Infomation',
+			title : 'S39 METAR & 152 Perf. Infomation',
+			loc_id : 's39',
 			pa : pa,
 			da : da,
-			loc_id : 'hio',
 			temperature : temperature,
 			pressure : pressure,
 			elevation : elevation , 
@@ -100,8 +100,10 @@ var j = schedule
 								+ ":" + time.getSeconds());
 					}
 					// METAR
+					var airport = "KS39";
+					var url_syntex = "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString="+airport+"&hoursBeforeNow=2";
 					var url = {
-						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=2",
+						url : url_syntex,
 						json : false
 					};
 
@@ -137,7 +139,7 @@ var j = schedule
 
 					// METAR
 					var url = {
-						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=4",
+						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=KRDM&hoursBeforeNow=4",
 						json : false
 					};
 
@@ -181,7 +183,7 @@ var j = schedule
 				
 				});
 
-
+/*
  // 두번째 스케줄
 var j2 = schedule2.scheduleJob(rule2, function() {
 	// aopa page crowingstart
@@ -192,7 +194,7 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 		return _ph.createPage();
 	}).then(function(page) {
 		_page = page;
-		return _page.open('https://www.aopa.org/airports/khio');
+		return _page.open('https://www.aopa.org/airports/s39');
 	}).then(function(status) {
 		console.log(status);
 		return _page.property('content')
@@ -208,11 +210,12 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 		_page.close();
 		_ph.exit();
 	});
-
 	// aopa crwoing end
 
 
 });
+
+*/
 
 
 
@@ -225,7 +228,8 @@ var readData = function(callback) {
 	//
 
 	// Calculation
-	pa = ((29.92 - metar_alti) * 1000 + 208);
+	var eleva = 3251;
+	pa = ((29.92 - metar_alti) * 1000 + eleva);
 	da = pa + 120 * (metar_temp - 15);
 	pa = pa.toFixed(1);
 	da = da.toFixed(1);
@@ -341,7 +345,7 @@ var readData = function(callback) {
 	Perf152_data_TO_50_Clr = CurTO50Clr(metar_temp, pa, takeoff50ft_152)
 			.toFixed(1);
 	Perf152_data_Land_Gnd_Roll = CurLandRoll(metar_temp, pa, landGndRoll_152)
-			.toFixed(1)*1.5;
+			.toFixed(1) * 1.5;
 	Perf152_data_Rate_Of_Climb = CurRateOfClimb(metar_temp, pa, rateOfClimb_152)
 			.toFixed(1);
 

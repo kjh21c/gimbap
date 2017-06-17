@@ -22,6 +22,7 @@
 <!--  added css -->
  <link rel="stylesheet" href="../wx_page_files/wxcore.css" type="text/css" media="screen">
  <link rel="stylesheet" href="../wx_page_files/common.css" type="text/css" media="screen">
+ <link rel="stylesheet" href="../wx_page_files/peter.css" type="text/css" media="screen">
 
  <script type="text/javascript">
   var sc_pathToTB = '/wx_page_files/';
@@ -5099,7 +5100,12 @@ var scMsgDefScInit = "";
      <table style="padding: 0px; spacing: 0px; border-width: 0px;" width="100%" height="100%">
       <tbody><tr>
        <td align="" valign="" class="scFormBlockFont"><table style="border-collapse: collapse; height: 100%; width: 100%"><tbody><tr><td style="vertical-align: middle; border-width: 0px; padding: 0px 2px 0px 0px">
-       </td><td style="border-width: 0px; padding: 0px; width: 100%;" class="scFormBlockAlign">KHIO METAR Data</td><td id ="flight_category" style="color: #a2a2a2;"><%=metar_flight_category%></td></td></tr></tbody></table></td>
+       </td><td style="border-width: 0px; padding: 0px; width: 50%;" class="scFormBlockAlign">KHIO METAR Data</td>
+       <td align="right">
+ 			 <input type="radio" name="loc" value="hio" checked="checked"  />HIO
+                      <input type="radio" name="loc" value="s39" />S39
+		</td>
+       </td></tr></tbody></table></td>
        
       </tr>
      </tbody></table>
@@ -5136,7 +5142,21 @@ var scMsgDefScInit = "";
 <tr>
 
    
-    <td class="scFormLabelOdd scUiLabelWidthFix css_weath_press_alt_label" id="hidden_field_label_weath_press_alt" style="width: 250px;"><span class="scFormRequiredOdd">*</span>  <span id="id_label_weath_press_alt">Pressure Altitude (ft)</span></td>
+    <td colspan =2 class="scFormLabelOdd scUiLabelWidthFix css_weath_press_alt_label" id="hidden_field_label_weath_press_alt" style="width: 250px;">
+    <div class="range-slider" >
+    	<span class="controlable_title">Field Elev.</span> <input class="range-slider__range" type= "range" id="weather_perf_elev" value=0>
+  		 <input class="range-slider__range range-slider__value" type ="number"  id="weather_perf_elev_text" value=0> 
+  	    <span class="controlable_title">Pressure</span>  <input class="range-slider__range" type= "range" id="weather_perf_pressure" value=29.92>
+  		<input class="range-slider__range range-slider__value" type ="number" id="weather_perf_pressure_text" value=29.92> 
+ 		<span class="controlable_title">Temperature</span> <input class="range-slider__range" type= "range" id="weather_perf_temp" value=15>
+	  	<input class="range-slider__range range-slider__value" type ="number"  id="weather_perf_temp_text" value=15> 
+  	</div>
+  	</td>
+ 	</tr>
+ 	<tr>
+    <td class="scFormLabelOdd scUiLabelWidthFix css_weath_press_alt_label" id="hidden_field_label_weath_press_alt" style="width: 250px;">
+    <span id="id_label_weath_press_alt">Pressure Altitude (ft)</span>
+    </td>
     <td class="scFormDataOdd css_weath_press_alt_line" id="hidden_field_data_weath_press_alt" style=""><table style="border-width: 0px; border-collapse: collapse; width: 100%;float:right"><tbody><tr><td class="scFormDataFontOdd css_weath_press_alt_line" style="vertical-align: top;padding: 0px">
 <span id="id_read_on_weath_press_alt" class="sc-ui-readonly-weath_press_alt css_weath_press_alt_line" style="display: none;">0.0</span><span id="id_read_off_weath_press_alt" style="white-space: nowrap;">
  <input class="sc-js-input scFormObjectOdd css_weath_press_alt_obj" style="text-align: right;" id="id_sc_field_weath_press_alt" value=<%= pa %> type="text" name="weath_press_alt" value="0.0" size="8" alt="{datatype: &#39;decimal&#39;, maxLength: 8, precision: 1, decimalSep: &#39;.&#39;, thousandsSep: &#39;,&#39;, thousandsFormat: 1, manualDecimals: true, allowNegative: true, onlyNegative: false, enterTab: false, enterSubmit: false, autoTab: false, selectOnFocus: true, watermark: &#39;&#39;, watermarkClass: &#39;scFormObjectOddWm&#39;, maskChars: &#39;(){}[].,;:-+/ &#39;}" maxlength="11"></span></td></tr><tr><td style="vertical-align: top; padding: 1px 0px 0px 0px"><table class="scFormFieldErrorTable" style="display: none" id="id_error_display_weath_press_alt_frame"><tbody><tr><td class="scFormFieldErrorMessage"><span id="id_error_display_weath_press_alt_text"></span></td></tr></tbody></table></td></tr></tbody></table></td>
@@ -5146,9 +5166,13 @@ var scMsgDefScInit = "";
 </tr><tr>
 
    
-    <td class="scFormLabelOdd scUiLabelWidthFix css_weath_dens_alt_label" id="hidden_field_label_weath_dens_alt" style="width: 250px;"><span class="scFormRequiredOdd">*</span>  <span id="id_label_weath_dens_alt">Density Altitude (ft)</span></td>
+    <td class="scFormLabelOdd scUiLabelWidthFix css_weath_dens_alt_label" id="hidden_field_label_weath_dens_alt" style="width: 250px;">
+     
+    <span id="id_label_weath_dens_alt">Density Altitude(ft)</span>
+    </td>
     <td class="scFormDataOdd css_weath_dens_alt_line" id="hidden_field_data_weath_dens_alt" style=""><table style="border-width: 0px; border-collapse: collapse; width: 100%;float:right"><tbody><tr><td class="scFormDataFontOdd css_weath_dens_alt_line" style="vertical-align: top;padding: 0px">
-<span id="id_read_on_weath_dens_alt" class="sc-ui-readonly-weath_dens_alt css_weath_dens_alt_line" style="display: none;">0.0</span><span id="id_read_off_weath_dens_alt" style="white-space: nowrap;">
+<span id="id_read_on_weath_dens_alt" class="sc-ui-readonly-weath_dens_alt css_weath_dens_alt_line" style="display: none;">0.0</span>
+<span id="id_read_off_weath_dens_alt" style="white-space: nowrap;">
  <input class="sc-js-input scFormObjectOdd css_weath_dens_alt_obj" style="text-align: right;" id="id_sc_field_weath_dens_alt" value=<%=da%> type="text" name="weath_dens_alt" value="0.0" size="8" alt="{datatype: &#39;decimal&#39;, maxLength: 8, precision: 1, decimalSep: &#39;.&#39;, thousandsSep: &#39;,&#39;, thousandsFormat: 1, manualDecimals: true, allowNegative: true, onlyNegative: false, enterTab: false, enterSubmit: false, autoTab: false, selectOnFocus: true, watermark: &#39;&#39;, watermarkClass: &#39;scFormObjectOddWm&#39;, maskChars: &#39;(){}[].,;:-+/ &#39;}" maxlength="11"></span></td></tr><tr><td style="vertical-align: top; padding: 1px 0px 0px 0px"><table class="scFormFieldErrorTable" style="display: none" id="id_error_display_weath_dens_alt_frame"><tbody><tr><td class="scFormFieldErrorMessage"><span id="id_error_display_weath_dens_alt_text"></span></td></tr></tbody></table></td></tr></tbody></table></td>
    
 
@@ -5958,8 +5982,7 @@ var scMsgDefScInit = "";
 </tbody></table></div>
 
 </form> 
-<script> 
-</script> 
+ 
 <script>
 function updateHeaderFooter(sFldName, sFldValue)
 {
@@ -5997,6 +6020,128 @@ function scMobileDisplayControl(sOption) {
  nm_atualiza("recarga_mobile");
 }
 </script>
+ <script type="text/javascript">
+	// range btn set peter + 감설정
+ 	$("#weather_perf_elev").attr("value", "0")
+ 								.attr("step", "1")
+ 								.attr("min","-500")
+ 								.attr("max","4000");
+ 	$("#weather_perf_elev_text").attr("value", "0");
+ 	$("#weather_perf_pressure").attr("value", '<%=pressure%>')
+ 								.attr("step", "0.01")
+ 								.attr("min","28.00")
+ 								.attr("max","32.00");
+ 	$("#weather_perf_pressure_text").attr("value",'<%=pressure%>');
+ 	
+ 	$("#weather_perf_temp").attr("value", '<%=temperature%>')
+		.attr("step", "1")
+		.attr("min","-10")
+		.attr("max","50");
+
+
+  	$(document).ready(function(){
+  		if('<%=loc_id%>' =='s39')
+  			$("input[name='loc']").val()='s39';
+  		
+  	 	$("#weather_perf_pressure").attr("value", '<%=pressure%>');
+  	 	$("#weather_perf_pressure_text").attr("value",'<%=pressure%>');
+  		$("#weather_perf_temp_text").attr("value",'<%=temperature%>');
+  		
+  		//initial set
+  		if ($("input[name='loc']:checked").val() == 'hio') {
+				$("#weather_perf_elev").attr("value", "208");
+        	 
+         }
+  		 $('input:radio[name=loc]').change(function () {
+  			 if ($("input[name='loc']:checked").val() == 'hio') {
+  				$("#weather_perf_elev").attr("value", "208");
+            	 
+             }
+             if ($("input[name='loc']:checked").val() == 's39') {
+  				$("#weather_perf_elev").attr("value", "3251");
+             }
+      		rangeSlider();
+      		Do_PerfCalculation();
+		});
+  		 
+  		rangeSlider();
+ 		Do_PerfCalculation();
+  	});
+	/*
+ 		  $("[type=range]").change(function(){
+ 			var this_id =  $(this).attr("id");
+			var newval = $(this).val();
+ 			if(this_id==("weather_perf_pressure"))
+ 				  $("#weather_perf_pressure_text").attr("value", newval);
+ 			if(this_id==("weather_perf_elev"))
+				  $("#weather_perf_elev_text").attr("value", newval);
+ 			if(this_id==("weather_perf_temp"))
+				  $("#weather_perf_temp_text").attr("value", newval);
+			//cal!!
+ 			Do_PerfCalculation();
+ 		  });
+ 		  $("[type=number]").change(function(){
+ 	 			var this_id =  $(this).attr("id");
+ 				var newval = $(this).val();
+ 	 			if(this_id==("weather_perf_pressure"))
+ 	 				  $("#weather_perf_pressure_text").attr("value", newval);
+ 	 			if(this_id==("weather_perf_elev"))
+ 					  $("#weather_perf_elev_text").attr("value", newval);
+ 	 			if(this_id==("weather_perf_temp"))
+ 					  $("#weather_perf_temp_text").attr("value", newval);
+ 				//cal!!
+ 	 			Do_PerfCalculation();
+ 	 		  });
+ 	}); */
+ 	// pada 계산
+ 	function Do_PerfCalculation(){
+ 		var elev = Number($("#weather_perf_elev_text").val());
+ 		var pressure = Number($("#weather_perf_pressure_text").val());
+ 		var temp =  Number($("#weather_perf_temp_text").val());;
+ 		$("#id_sc_field_weath_press_alt").attr("value", ((29.92-pressure)*1000 + elev ).toFixed(1));
+ 		var pa = Number($("#id_sc_field_weath_press_alt").val());
+ 		$("#id_sc_field_weath_dens_alt").attr("value", ( pa + (temp - 15)*120 ).toFixed(1));
+ 		
+	
+ 	}
+ 	//슬라이더 이벤트
+ 	var rangeSlider = function(){
+ 		  var slider = $('.range-slider'),
+ 		      range = $('.range-slider__range'),
+ 		      value = $('.range-slider__value');
+ 		    
+ 		  slider.each(function(){
+
+ 		    value.each(function(){
+ 		      var value = $(this).prev().attr('value');
+ 		      $(this).attr('value',value);
+ 		    });
+
+ 		    range.on('input', function(){
+ 		      $(this).next(value).attr('value',this.value);
+ 		     Do_PerfCalculation();
+ 		    });
+ 		  });
+ 		};
+
+ 		rangeSlider();
+ 		
+ 	
+/*   		
+ 		var locSelector = function(){
+ 		var locRadio = $('#loc');
+ 		locRadio.each(function(){
+ 			var whereami = $(this).value;
+ 			if(whereami == hio)
+ 				$("#weather_perf_elev_text").attr("value", "208");
+			if(whereami == s39)
+ 				$("#weather_perf_elev_text").attr("value", "3251");
+ 		});
+ 	}
+ 	
+ 	locSelector();  */
+ 	
+    </script>
  
  
 </body></html>
