@@ -105,33 +105,28 @@ var j = schedule
 						json : false
 					};
 
-					request(
-							url,
-							function(err, res, html) {
-								parser
-										.parseString(
-												html,
-												function(err, result) {
-
-													var alti = Number(result.response.data[0].METAR[0].altim_in_hg);
-													var temper = Number(result.response.data[0].METAR[0].temp_c);
-													var metar_raw_text = result.response.data[0].METAR[0].raw_text[0];
-													var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
-													// 처리
-													var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
-													var flight_category = result.response.data[0].METAR[0].flight_category;
-
-													metar_data = metar_raw_text;
-													metar_temp = temper;
-													metar_alti = alti;
-													metar_wind = wind;
-													metar_windVel = windVel;
-													metar_flight_category = flight_category;
-													
-													
-													temperature = temper;
-													pressure = alti;
-													elevation = 0;
+					request(url,function(err, res, html) {
+								parser.parseString(html,
+													function(err, result) {
+														var alti = Number(result.response.data[0].METAR[0].altim_in_hg);
+														var temper = Number(result.response.data[0].METAR[0].temp_c);
+														var metar_raw_text = result.response.data[0].METAR[0].raw_text[0];
+														var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
+														// 처리
+														var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
+														var flight_category = result.response.data[0].METAR[0].flight_category;
+	
+														metar_data = metar_raw_text;
+														metar_temp = temper;
+														metar_alti = alti;
+														metar_wind = wind;
+														metar_windVel = windVel;
+														metar_flight_category = flight_category;
+														
+														
+														temperature = temper;
+														pressure = alti;
+														elevation = 0;
 												})
 							})
 
@@ -165,18 +160,18 @@ var j = schedule
 					
 					
 					
-						// windaloft get
-						var url_loft = "http://aviationweather.gov/windtemp/data?region=sfo";
-						request(url_loft, function (err, res, html) {
-						    if (!err) {
-						        var $ = cheerio.load(html);
+					// windaloft get
+					var url_loft = "http://aviationweather.gov/windtemp/data?region=sfo";
+					request(url_loft, function (err, res, html) {
+					    if (!err) {
+					        var $ = cheerio.load(html);
 
-						        //데이터 처리
-						        wind_aloft = $("pre").html();
-						     
-						    }
-						});			
-
+					        //데이터 처리
+					        wind_aloft = $("pre").html();
+					     
+					    }
+					});		
+						
 						
 				
 				});
@@ -213,6 +208,7 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 
 
 });
+
 
 
 
