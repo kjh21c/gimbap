@@ -9,5 +9,9 @@ exports.index = function(req, res){
 };
 
 exports.info = function(req, res){
-	res.render('info', { title: 'Express' });
+	res.render('info', { title: 'Hillsboro Weather Information' });
+};
+
+exports.sitemap = function(req, res){
+	res.render('sitemap', { title: 'Hillsboro Weather Information sitemap' });
 };

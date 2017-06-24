@@ -36,6 +36,7 @@ app.get('/users', user.list);
 app.get('/metar/KHIO', perf.index);
 app.get('/metar/S39', perf_s39.index);
 app.get('/info', routes.info);
+app.get('/sitemap', routes.sitemap);
 
 
 /*http.createServer(app).listen(app.get('port'), function(){
