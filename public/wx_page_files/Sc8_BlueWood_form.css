@@ -15,7 +15,7 @@
 .scFormTableTd { padding: 20px }
 .scFormLabelLink { color: #FFFFFF; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none; vertical-align: middle }
 .scFormLabelOdd { background-color: #FFFFFF; background-image: none; opacity: 1; filter: alpha(opacity=100); border-color: #990000; border-width: 0; color: #333; font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; padding: 6px 10px; text-decoration: none; vertical-align: middle }
-.scFormLabelOddMult { background-color: #34495E; background-image: none; border-color: #34495E; border-style: solid; border-width: 2px 1px 2px 2px; color: #fff; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; padding: 10px; text-decoration: none; vertical-align: middle }
+.scFormLabelOddMult { background-color: #6b6b6b; background-image: none; border-color: #6b6b6b; border-style: solid; border-width: 2px 1px 2px 2px; color: #fff; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; padding: 10px; text-decoration: none; vertical-align: middle }
 .scFormLabelOddFormat { color: #333; font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; text-decoration: none }
 .scFormLabelOddFormatMult { color: #fff; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-decoration: none }
 .scFormRequiredOdd { color: #d54242; font-family: Arial; font-size: 12px; font-weight: bold }

@@ -31,6 +31,8 @@ var area_forecast = '',
 var $aopa_weather,
 	$aopa_weather_taf;
 
+
+
 // 페이지 콜 부분
 exports.index = function(req, res) {
 	readData(function() {
@@ -90,7 +92,8 @@ var j = schedule
 		.scheduleJob(
 				rule,
 				function() {
-					var time = new Date();
+					//time chk - No Needed
+			/*		var time = new Date();
 					if (time.getMinutes() == 0) {
 						console.log(time.getHours() + ":" + time.getMinutes()
 								+ ":" + time.getSeconds());
@@ -99,6 +102,9 @@ var j = schedule
 						console.log(time.getHours() + ":" + time.getMinutes()
 								+ ":" + time.getSeconds());
 					}
+					
+					*/
+				
 					// METAR
 					var url = {
 						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=2",
@@ -106,31 +112,35 @@ var j = schedule
 					};
 
 					request(url,function(err, res, html) {
+								if(!err){
 								parser.parseString(html,
 													function(err, result) {
-														var alti = Number(result.response.data[0].METAR[0].altim_in_hg);
-														var temper = Number(result.response.data[0].METAR[0].temp_c);
-														var metar_raw_text = result.response.data[0].METAR[0].raw_text[0];
-														var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
-														// 처리
-														var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
-														var flight_category = result.response.data[0].METAR[0].flight_category;
-	
-														metar_data = metar_raw_text;
-														metar_temp = temper;
-														metar_alti = alti;
-														metar_wind = wind;
-														metar_windVel = windVel;
-														metar_flight_category = flight_category;
-														
-														
-														temperature = temper;
-														pressure = alti;
-														elevation = 0;
-												})
-							})
+									
+														if(!err){
+															var alti = Number(result.response.data[0].METAR[0].altim_in_hg);
+															var temper = Number(result.response.data[0].METAR[0].temp_c);
+															var metar_raw_text = result.response.data[0].METAR[0].raw_text[0];
+															var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
+															// 처리
+															var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
+															var flight_category = result.response.data[0].METAR[0].flight_category;
+		
+															metar_data = metar_raw_text;
+															metar_temp = temper;
+															metar_alti = alti;
+															metar_wind = wind;
+															metar_windVel = windVel;
+															metar_flight_category = flight_category;
+															
+															
+															temperature = temper;
+															pressure = alti;
+															elevation = 0;
+														}
+												});
+								}});
 
-					// METAR
+					// TAF
 					var url = {
 						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=4",
 						json : false
@@ -165,15 +175,13 @@ var j = schedule
 					request(url_loft, function (err, res, html) {
 					    if (!err) {
 					        var $ = cheerio.load(html);
-
 					        //데이터 처리
 					        wind_aloft = $("pre").html();
-					     
 					    }
-					});		
-						
-						
-				
+					});
+					
+					
+					
 				});
 
 

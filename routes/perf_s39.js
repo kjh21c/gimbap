@@ -110,32 +110,31 @@ var j = schedule
 					request(
 							url,
 							function(err, res, html) {
-								parser
-										.parseString(
-												html,
-												function(err, result) {
-
-													var alti = Number(result.response.data[0].METAR[0].altim_in_hg);
-													var temper = Number(result.response.data[0].METAR[0].temp_c);
-													var metar_raw_text = result.response.data[0].METAR[0].raw_text[0];
-													var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
-													// 처리
-													var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
-													var flight_category = result.response.data[0].METAR[0].flight_category;
-
-													metar_data = metar_raw_text;
-													metar_temp = temper;
-													metar_alti = alti;
-													metar_wind = wind;
-													metar_windVel = windVel;
-													metar_flight_category = flight_category;
-													
-													
-													temperature = temper;
-													pressure = alti;
-													elevation = 0;
+								if(!err){
+								parser.parseString(html,function(err, result) {
+													if(!err){
+														var alti = Number(result.response.data[0].METAR[0].altim_in_hg);
+														var temper = Number(result.response.data[0].METAR[0].temp_c);
+														var metar_raw_text = result.response.data[0].METAR[0].raw_text[0];
+														var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
+														// 처리
+														var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
+														var flight_category = result.response.data[0].METAR[0].flight_category;
+	
+														metar_data = metar_raw_text;
+														metar_temp = temper;
+														metar_alti = alti;
+														metar_wind = wind;
+														metar_windVel = windVel;
+														metar_flight_category = flight_category;
+														
+														
+														temperature = temper;
+														pressure = alti;
+														elevation = 0;
+													}
 												})
-							})
+								}})
 
 					// METAR
 					var url = {

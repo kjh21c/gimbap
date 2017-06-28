@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , perf = require('./routes/perf')
+  , airport_info = require('./routes/airport_info')
   , perf_s39 = require('./routes/perf_s39')
   , http = require('http')
   , path = require('path');
@@ -34,6 +35,8 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/metar/KHIO', perf.index);
+app.get('/metar/Landing_Airports', airport_info.index);
+
 app.get('/metar/S39', perf_s39.index);
 app.get('/info', routes.info);
 app.get('/sitemap', routes.sitemap);

@@ -1,0 +1,22 @@
+.css_ap_name__label {text-align:center;}
+.css_ap_name__line { }
+.css_ap_name__obj { }
+.css_ap_identifier__label {text-align:center;}
+.css_ap_identifier__line { }
+.css_ap_identifier__obj { }
+.css_field_elev__label { }
+.css_field_elev__line {text-align:right;}
+.css_field_elev__obj {text-align:right;}
+.css_dens_alt__label { }
+.css_dens_alt__line {text-align:right;}
+.css_dens_alt__obj {text-align:right;}
+.css_runway_lens__label { }
+.css_runway_lens__line { }
+.css_runway_lens__obj { }
+.css_stop_yn__label {text-align:center;vertical-align:middle;}
+.css_stop_yn__line {text-align:center;}
+.css_stop_yn__obj {text-align:center;}
+.sc_field_info {
+    width: 210;
+    font-size: small;
+}
