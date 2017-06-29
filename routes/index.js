@@ -17,3 +17,7 @@ exports.info = function(req, res){
 exports.sitemap = function(req, res){
 	res.render('sitemap', { title: 'Hillsboro Weather Information sitemap' });
 };
+
+exports.blog = function(req, res){
+	res.render('doc_container', { title: 'Aviation Blog' });
+};

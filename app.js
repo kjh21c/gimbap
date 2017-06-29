@@ -36,10 +36,10 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/metar/KHIO', perf.index);
 app.get('/metar/Landing_Airports', airport_info.index);
-
 app.get('/metar/S39', perf_s39.index);
 app.get('/info', routes.info);
 app.get('/sitemap', routes.sitemap);
+app.get('/BLOG', routes.blog);
 
 
 /*http.createServer(app).listen(app.get('port'), function(){
