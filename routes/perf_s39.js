@@ -144,11 +144,15 @@ var j = schedule
 
 					request(
 							url,
-							function(err, res, html) {parser.parseString(html,
+							function(err, res, html) {
+								if(!err){
+								parser.parseString(
+												html,
 												function(err, result) {
 													var taf_raw_text = result.response.data[0].TAF[0].raw_text[0];
 													taf_data = taf_raw_text;
 												});
+								}
 							});
 										
 							

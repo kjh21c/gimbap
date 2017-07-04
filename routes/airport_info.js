@@ -3,7 +3,11 @@ var request = require('request');
 //xml
 var xml2js = require('xml2js');
 var parser = new xml2js.Parser();
-
+//scheduling
+var schedule = require('node-schedule');
+var rule = new schedule.RecurrenceRule();
+rule.miniute = 5;
+// 5분시행
 
 exports.index = function(req, res){
 	res.render('lnd_airports', { title: 'Hillsboro Weather Information' ,
@@ -55,6 +59,12 @@ var rwyInfo = {
 var stationName = ['KHIO', 'KEUG', 'KOLM','KCVO','KDLS','KS39'];
 var metarContaioner = []; 
 
+
+//scheduling 시작
+var j = schedule.scheduleJob(
+		rule, 
+		function() {
+
 stationName.forEach(function(elt, i) {
 	var urlText = "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=" +
 			elt +
@@ -103,6 +113,16 @@ stationName.forEach(function(elt, i) {
 	} );
 	
 });
+
+
+
+			
+			
+		});
+		
+		
+		
+		
 
 
 
