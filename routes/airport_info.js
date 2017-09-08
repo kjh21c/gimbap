@@ -75,37 +75,40 @@ stationName.forEach(function(elt, i) {
 		parser.parseString(xml, function(err, result) {
 			//metarInfo["error"] = true;
 			if(!err){
-				var std_id = result.response.data[0].METAR[0].station_id;
-				var metarInfo = {'pa':Number, 'da': Number};
-				metarInfo["station_id"] =   		result.response.data[0].METAR[0].station_id;
-				metarInfo["error"] = false;
-				metarInfo["raw_text"]  =   			result.response.data[0].METAR[0].raw_text;
-				metarInfo["station_id"]  =   		result.response.data[0].METAR[0].station_id;
-				metarInfo["observation_time"]  =  	result.response.data[0].METAR[0].observation_time;
-				metarInfo["latitude"]  =  			 result.response.data[0].METAR[0].latitude;
-				metarInfo["longitude"]  =  			 result.response.data[0].METAR[0].longitude;
-				metarInfo["temp_c"]  = 				 result.response.data[0].METAR[0].temp_c		;	
-				metarInfo["dewpoint_c"]  = 			 result.response.data[0].METAR[0].dewpoint_c;
-				metarInfo["wind_dir_degrees"]  =  	 result.response.data[0].METAR[0].wind_dir_degrees;
-				metarInfo["wind_speed_kt"]  =  	 	result.response.data[0].METAR[0].wind_speed_kt;
-				metarInfo["wind_gust_kt"]  =  		 result.response.data[0].METAR[0].wind_gust_kt;
-				metarInfo["visibility_statute_mi"]  = result.response.data[0].METAR[0].visibility_statute_mi  ;
-				metarInfo["altim_in_hg"] =  		 Number(result.response.data[0].METAR[0].altim_in_hg).toFixed(2);
-				metarInfo["sea_level_pressure_mb"]  =   result.response.data[0].METAR[0].sea_level_pressure_mb;
-				metarInfo["quality_control_flags"]  =   result.response.data[0].METAR[0].quality_control_flags;	
-				metarInfo["sky_cover"]  			=   result.response.data[0].METAR[0].sky_cover;  // array	
-				metarInfo["flight_category"]  		=   result.response.data[0].METAR[0].flight_category;	
-				metarInfo["metar_type"] 			 =   result.response.data[0].METAR[0].metar_type;	
-				metarInfo["elevation_m"] 			 =   result.response.data[0].METAR[0].elevation_m;	
-				
-				metarInfo["elevation_ft"] 			 =   Number((metarInfo.elevation_m)* 3.28).toFixed(0) ;	
-				metarInfo["pa"] 					= Number(((29.92 - metarInfo.altim_in_hg) * 1000 + metarInfo.elevation_m*3.28)).toFixed(1);
-				metarInfo["da"] 					= Number(metarInfo.pa) + 120 * (metarInfo.temp_c - 15);
-				
-				metarInfo["pa_text"] 					= "((29.92 - " + metarInfo.altim_in_hg+ " ) * 1000 + "+ Number(metarInfo.elevation_m*3.28).toFixed(0) + ")";
-				metarInfo["da_text"] 					= metarInfo.pa + " + 120 * ("+ metarInfo.temp_c + "- 15)";
-				metarInfo["rwy_info"]				= 	rwyInfo[std_id];			
-				metarContaioner[std_id] = metarInfo;
+				if(result.response.data.legth<0) 
+				{
+					var std_id = result.response.data[0].METAR[0].station_id;
+					var metarInfo = {'pa':Number, 'da': Number};
+					metarInfo["station_id"] =   		result.response.data[0].METAR[0].station_id;
+					metarInfo["error"] = false;
+					metarInfo["raw_text"]  =   			result.response.data[0].METAR[0].raw_text;
+					metarInfo["station_id"]  =   		result.response.data[0].METAR[0].station_id;
+					metarInfo["observation_time"]  =  	result.response.data[0].METAR[0].observation_time;
+					metarInfo["latitude"]  =  			 result.response.data[0].METAR[0].latitude;
+					metarInfo["longitude"]  =  			 result.response.data[0].METAR[0].longitude;
+					metarInfo["temp_c"]  = 				 result.response.data[0].METAR[0].temp_c		;	
+					metarInfo["dewpoint_c"]  = 			 result.response.data[0].METAR[0].dewpoint_c;
+					metarInfo["wind_dir_degrees"]  =  	 result.response.data[0].METAR[0].wind_dir_degrees;
+					metarInfo["wind_speed_kt"]  =  	 	result.response.data[0].METAR[0].wind_speed_kt;
+					metarInfo["wind_gust_kt"]  =  		 result.response.data[0].METAR[0].wind_gust_kt;
+					metarInfo["visibility_statute_mi"]  = result.response.data[0].METAR[0].visibility_statute_mi  ;
+					metarInfo["altim_in_hg"] =  		 Number(result.response.data[0].METAR[0].altim_in_hg).toFixed(2);
+					metarInfo["sea_level_pressure_mb"]  =   result.response.data[0].METAR[0].sea_level_pressure_mb;
+					metarInfo["quality_control_flags"]  =   result.response.data[0].METAR[0].quality_control_flags;	
+					metarInfo["sky_cover"]  			=   result.response.data[0].METAR[0].sky_cover;  // array	
+					metarInfo["flight_category"]  		=   result.response.data[0].METAR[0].flight_category;	
+					metarInfo["metar_type"] 			 =   result.response.data[0].METAR[0].metar_type;	
+					metarInfo["elevation_m"] 			 =   result.response.data[0].METAR[0].elevation_m;	
+					
+					metarInfo["elevation_ft"] 			 =   Number((metarInfo.elevation_m)* 3.28).toFixed(0) ;	
+					metarInfo["pa"] 					= Number(((29.92 - metarInfo.altim_in_hg) * 1000 + metarInfo.elevation_m*3.28)).toFixed(1);
+					metarInfo["da"] 					= Number(metarInfo.pa) + 120 * (metarInfo.temp_c - 15);
+					
+					metarInfo["pa_text"] 					= "((29.92 - " + metarInfo.altim_in_hg+ " ) * 1000 + "+ Number(metarInfo.elevation_m*3.28).toFixed(0) + ")";
+					metarInfo["da_text"] 					= metarInfo.pa + " + 120 * ("+ metarInfo.temp_c + "- 15)";
+					metarInfo["rwy_info"]				= 	rwyInfo[std_id];			
+					metarContaioner[std_id] = metarInfo;
+				}
 				
 				//console.log(metarContaioner.KHIO);
 			} 
