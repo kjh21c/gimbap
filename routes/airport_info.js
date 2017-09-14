@@ -86,7 +86,7 @@ stationName.forEach(function(elt, i) {
 		parser.parseString(xml, function(err, result) {
 			//metarInfo["error"] = true;
 			if(!err){
-				//if(result.response.data.legth>=0) 
+				if(result.response.data.legth>=0) 
 				{
 					var std_id = result.response.data[0].METAR[0].station_id;
 					var metarInfo = {'pa':Number, 'da': Number};
