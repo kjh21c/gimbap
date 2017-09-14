@@ -56,8 +56,8 @@ var rwyInfo = {
 		'KCVO':'5900/3545'
 };
 
-var stationName = ['KHIO', 'KEUG', 'KOLM'//,'KCVO'
-                   ,'KDLS','KS39'];
+var stationName = ['KHIO', 'KEUG', 'KOLM'//,'KCVO','KDLS'
+                   ,'KS39'];
 var metarContaioner = []; 
 
 //initiate for cvo only
@@ -67,6 +67,13 @@ metarContaioner["KCVO"] = {'elevation_ft':''
 							,'da_text':''
 							,'pa_text':''
 							
+}; 
+metarContaioner["KDLS"] = {'elevation_ft':''
+	,'da':''
+	,'rwy_info':''
+	,'da_text':''
+	,'pa_text':''
+	
 }; 
 
 
@@ -86,7 +93,8 @@ stationName.forEach(function(elt, i) {
 		parser.parseString(xml, function(err, result) {
 			//metarInfo["error"] = true;
 			if(!err){
-				if(result.response.data.legth>=0) 
+				var num_result = result.response.data[0]['$']['num_results'];  // notice useage!!!!
+				if(num_result>0) 
 				{
 					var std_id = result.response.data[0].METAR[0].station_id;
 					var metarInfo = {'pa':Number, 'da': Number};
