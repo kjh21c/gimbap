@@ -3068,15 +3068,15 @@ function scMobileDisplayControl(sOption) {
     
     <!-- iframe custom  -->
 	<script language="javascript">
-		if(document.parentNode!=null){
-			parent.postMessage(document.body.scrollHeight,"http://gimbap.000webhostapp.com");
-		}
-		document.body.addEventListener("resize", resizeFunction);
+		//if(document.parentNode!=null){
+		//	parent.postMessage(document.body.scrollHeight,"http://gimbap.000webhostapp.com");
+		//}
+		window.addEventListener("resize", resizeFunction);
 		
 		function resizeFunction(){
-			if(document.parentNode!=null){
+		//	if(document.parentNode!=null){
 				parent.postMessage(document.body.scrollHeight,"http://gimbap.000webhostapp.com");
-			}
+			//}
 		}
 	</script>
 </html>
