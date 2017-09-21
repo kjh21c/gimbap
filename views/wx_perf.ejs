@@ -3069,5 +3069,9 @@ function scMobileDisplayControl(sOption) {
     <!-- iframe custom  -->
 	<script language="javascript">
 		parent.postMessage(document.body.scrollHeight,"http://gimbap.000webhostapp.com");
+		window.addEventListener("resize", resizeFunction);
+		function resizeFunction(){
+			parent.postMessage(document.body.scrollHeight,"http://gimbap.000webhostapp.com");
+		}
 	</script>
 </html>
