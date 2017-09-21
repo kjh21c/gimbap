@@ -3068,13 +3068,13 @@ function scMobileDisplayControl(sOption) {
     
     <!-- iframe custom  -->
 	<script language="javascript">
-		if(parent!=null){
+		if(document.parentNode!=null){
 			parent.postMessage(document.body.scrollHeight,"http://gimbap.000webhostapp.com");
 		}
-		body.addEventListener("resize", resizeFunction);
+		document.body.addEventListener("resize", resizeFunction);
 		
 		function resizeFunction(){
-			if(parent!=null){
+			if(document.parentNode!=null){
 				parent.postMessage(document.body.scrollHeight,"http://gimbap.000webhostapp.com");
 			}
 		}
