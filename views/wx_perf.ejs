@@ -3071,7 +3071,10 @@ function scMobileDisplayControl(sOption) {
 		//if(document.parentNode!=null){
 		//	parent.postMessage(document.body.scrollHeight,"http://gimbap.000webhostapp.com");
 		//}
-		window.addEventListener("resize", resizeFunction);
+		
+		parent.postMessage(document.body.scrollHeight,"http://gimbap.000webhostapp.com");
+		
+		//window.addEventListener("resize", resizeFunction);
 		
 		function resizeFunction(){
 		//	if(document.parentNode!=null){
