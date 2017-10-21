@@ -107,7 +107,7 @@ var j = schedule
 				
 					// METAR
 					var url = {
-						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=2",
+						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=24",
 						json : false
 					};
 
