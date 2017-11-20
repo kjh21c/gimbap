@@ -19,9 +19,6 @@ var parser = new xml2js.Parser();
 //http crowing
 var cheerio = require('cheerio');
 //phantom
-
-
-
 var metar_data, metar_temp, metar_alti, metar_wind, metar_windVel, pa, da, crossWind1, crossWind2, Perf152_data_TO_Gnd_Roll, Perf152_data_TO_50_Clr, Perf152_data_Land_Gnd_Roll, Perf152_data_Rate_Of_Climb, Perf172_data_TO_Gnd_Roll, Perf172_data_TO_50_Clr, Perf172_data_Land_Gnd_Roll, Perf172_data_Rate_Of_Climb;
 var temperature, pressure, elevation;
 var taf_data,metar_flight_category;
