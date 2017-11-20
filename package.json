@@ -6,15 +6,16 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.2.6",
+	  "cheerio" : "1.x.x",
+			
+	  "express": "3.2.6",
     "jade": "*",
 	"request": "2.81.x",
     "xml2js": "0.4.x",
 	"ejs": "~2.4.1",
 	"bower" : "~1.7.1",
 	"node-schedule" : "1.2.3",
-	"phantom" : "4.0.4",
-	"cheerio":"1.x"
+	"phantom" : "4.0.4"
 		
   }
 }
