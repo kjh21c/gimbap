@@ -34,7 +34,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/metar/KHIO', perf.index);
+app.get('/metar/KHIO', routes.index);
+app.get('/metar/KHIO_2', perf.index);
 app.get('/metar/Landing_Airports', airport_info.index);
 app.get('/metar/S39', perf_s39.index);
 app.get('/info', routes.info);

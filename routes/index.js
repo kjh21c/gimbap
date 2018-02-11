@@ -4,7 +4,7 @@
  */
 
 exports.index = function(req, res){
-	res.redirect('/METAR/KHIO');
+	res.redirect('http://www.actualimc.com');
   //res.render('index', { title: 'Express' });
 };
 
@@ -21,3 +21,4 @@ exports.sitemap = function(req, res){
 exports.blog = function(req, res){
 	res.render('doc_container', { title: 'Aviation Blog' });
 };
+
