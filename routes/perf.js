@@ -204,6 +204,7 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 		$aopa_weather_taf = $('.taf-here');
 		//
 		 console.log('html_metar-'+$aopa_weather.html());
+		 console.log('html-'+$.html());
 		var post = [];
 		_page.close();
 		_ph.exit();
