@@ -194,7 +194,7 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 		_page = page;
 		return _page.open('https://www.aopa.org/airports/khio');
 	}).then(function(status) {
-		console.log(status);
+		console.log('status:'+status);
 		return _page.property('content')
 	}).then(function(content) {
 		// console.log(content);
@@ -203,7 +203,7 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 		$aopa_weather = $('.metars-here');
 		$aopa_weather_taf = $('.taf-here');
 		//
-		// console.log($aopa_weather.html());
+		 console.log('html_metar-'+$aopa_weather.html());
 		var post = [];
 		_page.close();
 		_ph.exit();
