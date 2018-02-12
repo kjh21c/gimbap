@@ -12,6 +12,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
+
 var app = express();
 
 // all environments
@@ -21,7 +22,10 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile); // added
 app.use(express.favicon());
-app.use(express.logger('dev'));
+
+//default, short ,tiny, and dev
+//app.use(express.logger('default'));
+
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
