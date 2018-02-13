@@ -190,11 +190,24 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 	phantom.create().then(function(ph) {
 		_ph = ph;
 		return _ph.createPage();
-	}).then(function(page) {
-		_page = page;
-		return _page.open('https://www.aopa.org/airports/khio');
-	}).then(function(status) {
-		console.log('status:'+status);
+	}).then(
+			function(page) {
+				_page = page;
+				return _page.open('https://www.aopa.org/airports/khio',
+						function(status) {
+							if (status !== 'success') {
+								console.log('Unable to load the address!');
+								phantom.exit();
+							} else {
+								window.setTimeout(function() {
+									page.render(output);
+									phantom.exit();
+								}, 1000); // Change timeout as required to
+								// allow sufficient time
+							}
+						});
+			}).then(function(status) {
+		console.log('status:' + status);
 		return _page.property('content')
 	}).then(function(content) {
 		// console.log(content);
@@ -203,15 +216,14 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 		$aopa_weather = $('.metars-here');
 		$aopa_weather_taf = $('.taf-here');
 		//
-		 console.log('html_metar-'+$aopa_weather.html());
-		 console.log('html-'+$.html());
+		console.log('html_metar-' + $aopa_weather.html());
+		console.log('html-' + $.html());
 		var post = [];
 		_page.close();
 		_ph.exit();
 	});
 
 	// aopa crwoing end
-
 
 });
 
