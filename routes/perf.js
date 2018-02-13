@@ -202,7 +202,7 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 								window.setTimeout(function() {
 									page.render(output);
 									phantom.exit();
-								}, 2000); // Change timeout as required to
+								}, 20000); // Change timeout as required to
 								// allow sufficient time
 							}
 						});
