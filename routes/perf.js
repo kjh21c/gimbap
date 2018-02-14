@@ -19,7 +19,10 @@ var parser = new xml2js.Parser();
 //http crowing
 var cheerio = require('cheerio');
 //phantom
-var metar_data, metar_temp, metar_alti, metar_wind, metar_windVel, pa, da, crossWind1, crossWind2, Perf152_data_TO_Gnd_Roll, Perf152_data_TO_50_Clr, Perf152_data_Land_Gnd_Roll, Perf152_data_Rate_Of_Climb, Perf172_data_TO_Gnd_Roll, Perf172_data_TO_50_Clr, Perf172_data_Land_Gnd_Roll, Perf172_data_Rate_Of_Climb;
+var metar_data, metar_temp, metar_alti, 
+	metar_wind, metar_windVel, pa, da, metar_dewp , metar_visi , 
+	obsrv_time , obsrv_time_diff, 
+	crossWind1, crossWind2,	Perf152_data_TO_Gnd_Roll, Perf152_data_TO_50_Clr, Perf152_data_Land_Gnd_Roll, Perf152_data_Rate_Of_Climb, Perf172_data_TO_Gnd_Roll, Perf172_data_TO_50_Clr, Perf172_data_Land_Gnd_Roll, Perf172_data_Rate_Of_Climb;
 var temperature, pressure, elevation;
 var taf_data,metar_flight_category;
 var area_forecast = '',
@@ -43,9 +46,18 @@ exports.index = function(req, res) {
 			elevation : elevation , 
 			metar : metar_data,
 			taf : taf_data,
-			surfaceWind : metar_windVel,
+			surfaceWind : metar_wind,
+			surfaceWindVel : metar_windVel,
 			crossWind1 : crossWind1,
 			crossWind2 : crossWind2,
+			metar_alti : metar_alti , 
+			metar_dewp : metar_dewp,
+			metar_visi : metar_visi,
+			metar_flight_category: metar_flight_category,
+			obsrv_time: obsrv_time, 
+			obsrv_time_diff : obsrv_time_diff, 
+			
+			//airp perf data
 			Perf152_data_TO_Gnd_Roll : Perf152_data_TO_Gnd_Roll,
 			Perf152_data_TO_50_Clr : Perf152_data_TO_50_Clr,
 			Perf152_data_Land_Gnd_Roll : Perf152_data_Land_Gnd_Roll,
@@ -54,7 +66,6 @@ exports.index = function(req, res) {
 			Perf172_data_TO_50_Clr : Perf172_data_TO_50_Clr,
 			Perf172_data_Land_Gnd_Roll : Perf172_data_Land_Gnd_Roll,
 			Perf172_data_Rate_Of_Climb : Perf172_data_Rate_Of_Climb,
-			metar_flight_category: metar_flight_category,
 			bloco_title_10 : 'Area Forecast',
 			bloco_title_11 : 'Wind_Aloft',
 			bloco_title_12 : 'NOTAM',
@@ -118,28 +129,48 @@ var j = schedule
 															var temper = Number(result.response.data[0].METAR[0].temp_c);
 															var metar_raw_text = result.response.data[0].METAR[0].raw_text[0];
 															var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
-															// 처리
 															var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
 															var flight_category = result.response.data[0].METAR[0].flight_category;
 		
+															var dewp = Number(result.response.data[0].METAR[0].dewpoint_c); // 
+															var visi = Number(result.response.data[0].METAR[0].visibility_statute_mi); // 
+															
+															var obsrv_time_metar = result.response.data[0].METAR[0].observation_time; // 
+															
+															
+															
 															metar_data = metar_raw_text;
 															metar_temp = temper;
 															metar_alti = alti;
 															metar_wind = wind;
 															metar_windVel = windVel;
 															metar_flight_category = flight_category;
-															
+															metar_dewp = dewp; 
+															metar_visi = visi; 
 															
 															temperature = temper;
 															pressure = alti;
 															elevation = 0;
+														
+															obsrv_time = new Date(obsrv_time_metar);
+															obsrv_time_diff = new Date().getTime() - obsrv_time.getTime() ;
+															console.log(obsrv_time_diff);
+															
+															obsrv_time_diff = new Date(obsrv_time_diff );
+															obsrv_time_diff = obsrv_time_diff.getUTCHours() + ":" + obsrv_time_diff.getUTCMinutes() ;
+															
+															obsrv_time = obsrv_time.getHours() + ":" + obsrv_time.getMinutes();
+															console.log(obsrv_time_diff);
+															
+															
+														
 														}
 												});
 								}});
 
 					// TAF
 					var url = {
-						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=4",
+						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=24",
 						json : false
 					};
 
@@ -202,7 +233,7 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 								window.setTimeout(function() {
 									page.render(output);
 									phantom.exit();
-								}, 20000); // Change timeout as required to
+								}, 1000); // Change timeout as required to
 								// allow sufficient time
 							}
 						});
@@ -216,8 +247,8 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 		$aopa_weather = $('.metars-here');
 		$aopa_weather_taf = $('.taf-here');
 		//
-		console.log('html_metar-' + $aopa_weather.html());
-		console.log('html-' + $.html());
+		//console.log('html_metar-' + $aopa_weather.html());
+		//console.log('html-' + $.html());
 		var post = [];
 		_page.close();
 		_ph.exit();

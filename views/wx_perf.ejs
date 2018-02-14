@@ -947,16 +947,19 @@ var scMsgDefScInit = "";
 <tbody>
 <tr><td>
     <table style="border-collapse: collapse; border-width: 0px; width: 100%"><tbody><tr><td class="scFormToolbar" style="padding: 0px; spacing: 0px">
-    <table style="border-collapse: collapse; border-width: 0px; width: 100%">
+    
     <tbody><tr> 
-   
-     <td nowrap="" align="center" valign="middle" width="33%" class="scFormToolbarPadding"> 
-      <!--  <a href="./Landing_Airports" id="sc_wxnperf_top" class="scButton_default" style="vertical-align: middle; display:inline-block;">WX &amp; Performance</a>
-        -->
+   <table style="border-collapse: collapse; border-width: 0px; width: 100%">
+   <tr>
+     <td nowrap="" align="center" valign="middle" width="80%" class="scFormToolbarPadding"> 
        <a href="./Landing_Airports" id="sc_land_ap_top"  class="scButton_default" style="vertical-align: middle; display:inline-block;">Landing Airports</a>
- 
      </td> 
-
+     <td nowrap="" align="center" valign="middle" width="20%" class="scFormToolbarPadding"> 
+       <a href="http://www.actualimc.com/bbs/content_weather.php" id="sc_land_ap_top_2" class="scButton_default" style="vertical-align: middle;display:inline-block;border-radius: 0px 20px 20px 0px; /* Rounded corners on the top right and bottom right side */background-color: #5d90bc;border-color: #5d90bc;color: white;">CHECK Forecast !</a>
+     </td> 
+     </tr>
+	</table>
+	</tr>
 <tr><td>
     <table style="border-collapse: collapse; border-width: 0px; width: 100%"><tbody><tr><td class="scFormToolbar" style="padding: 0px; spacing: 0px">
 
@@ -994,6 +997,24 @@ var scMsgDefScInit = "";
 
    </tr>
   <tr><td>
+  	<!--  custom metar  -->
+	  <ul style="" class="metars-here" id="ext-gen23">
+	
+		<li id="ext-gen54"><ul class="metar-ct" id="ext-gen55">
+				<li class="metar-col metar-col-info"><b>KHIO</b><br>
+				<span class="<%=metar_flight_category%>"><%=metar_flight_category%></span>223 MSL<br></li>
+				<li class="metar-col metar-col-time"><%=obsrv_time%><br>
+				<i>(<%=obsrv_time_diff%> minutes ago)</i></li>
+				<li class="metar-col metar-col-wind metar-col-viz metar-col-cloud"><span
+					class="winds b<%=surfaceWind%> "><span>&nbsp;</span><%=surfaceWind%> @ <%=surfaceWindVel%> kts</span><br>
+				<span class="visibility ">Visibility: <b><%=metar_visi%></b></span><br>
+				<b>-</b></li>
+				<li class="metar-col metar-col-tempdew metar-col-cond"><span
+					class="temperatures"><b><%= temperature%>° /<%= metar_dewp%>°</b><br>
+					<i><%= temperature%>° /<%= metar_dewp%>°</i><br></span><span class="altimeter">A<%=metar_alti%><br></span></li>
+			</ul></li>
+	</ul>
+  
     <%-bloco_contents_metar%>
     <%-bloco_contents_taf%>
     
