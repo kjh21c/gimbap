@@ -6,3 +6,5 @@ body {
 a {
   color: #00B7FF;
 }
+
+.timeblinker{animation: timeblinker 4s linear infinite;}@keyframes timeblinker {50% { opacity: 0.5; }}

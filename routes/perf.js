@@ -30,7 +30,8 @@ var area_forecast = '',
 	notam_url = 'https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=DOMESTIC&retrieveLocId=HIO&actionType=notamRetrievalByICAOs';
 var $aopa_weather,
 	$aopa_weather_taf;
-
+//cheerio object
+var $data_first_metar_obj;
 
 
 // 페이지 콜 부분
@@ -56,6 +57,8 @@ exports.index = function(req, res) {
 			metar_flight_category: metar_flight_category,
 			obsrv_time: obsrv_time, 
 			obsrv_time_diff : obsrv_time_diff, 
+			//cheerio obj
+			$data_first_metar_obj : $data_first_metar_obj,
 			
 			//airp perf data
 			Perf152_data_TO_Gnd_Roll : Perf152_data_TO_Gnd_Roll,
@@ -100,18 +103,6 @@ var j = schedule
 		.scheduleJob(
 				rule,
 				function() {
-					//time chk - No Needed
-			/*		var time = new Date();
-					if (time.getMinutes() == 0) {
-						console.log(time.getHours() + ":" + time.getMinutes()
-								+ ":" + time.getSeconds());
-					}
-					if (time.getMinutes() == 30) {
-						console.log(time.getHours() + ":" + time.getMinutes()
-								+ ":" + time.getSeconds());
-					}
-					
-					*/
 				
 					// METAR
 					var url = {
@@ -120,10 +111,19 @@ var j = schedule
 					};
 
 					request(url,function(err, res, html) {
+						
+						//cheerio 이용 개선
+						$ = cheerio.load(html,{  xmlMode: true	});
+						var $data_first_metar = cheerio.load($('data').children().first().html(),{xmlMode:true});
+						$data_first_metar_obj = $data_first_metar;
+//						$data_first_metar('sky_condition').each(function(inx, ele) {
+//							console.log('checkthis'+$(ele).attr('sky_cover')+$(ele).attr('cloud_base_ft_agl')); }
+//						);
+						
+						//이전 버젼 방식
 								if(!err){
 								parser.parseString(html,
 													function(err, result) {
-									
 														if(!err){
 															var alti = Number(result.response.data[0].METAR[0].altim_in_hg);
 															var temper = Number(result.response.data[0].METAR[0].temp_c);
@@ -131,13 +131,9 @@ var j = schedule
 															var wind = Number(result.response.data[0].METAR[0].wind_dir_degrees); // exception
 															var windVel = Number(result.response.data[0].METAR[0].wind_speed_kt);
 															var flight_category = result.response.data[0].METAR[0].flight_category;
-		
 															var dewp = Number(result.response.data[0].METAR[0].dewpoint_c); // 
 															var visi = Number(result.response.data[0].METAR[0].visibility_statute_mi); // 
-															
 															var obsrv_time_metar = result.response.data[0].METAR[0].observation_time; // 
-															
-															
 															
 															metar_data = metar_raw_text;
 															metar_temp = temper;
@@ -154,16 +150,9 @@ var j = schedule
 														
 															obsrv_time = new Date(obsrv_time_metar);
 															obsrv_time_diff = new Date().getTime() - obsrv_time.getTime() ;
-															console.log(obsrv_time_diff);
-															
 															obsrv_time_diff = new Date(obsrv_time_diff );
 															obsrv_time_diff = obsrv_time_diff.getUTCHours() + ":" + obsrv_time_diff.getUTCMinutes() ;
-															
 															obsrv_time = obsrv_time.getHours() + ":" + obsrv_time.getMinutes();
-															console.log(obsrv_time_diff);
-															
-															
-														
 														}
 												});
 								}});

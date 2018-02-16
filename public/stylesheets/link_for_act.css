@@ -18,3 +18,5 @@
     top: 20px;
     background-color: #4CAF50;
 }
+
+.timeblinker{animation: timeblinker 3s linear infinite;}@keyframes timeblinker {50% { opacity: 0.5; }}
