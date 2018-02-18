@@ -19,4 +19,4 @@
     background-color: #4CAF50;
 }
 
-.timeblinker{animation: timeblinker 3s linear infinite;}@keyframes timeblinker {50% { opacity: 0.5; }}
+.timeblinker{animation: timeblinker 5s linear infinite;}@keyframes timeblinker {50% { opacity: 0.5; }}

@@ -32,6 +32,8 @@ var $aopa_weather,
 	$aopa_weather_taf;
 //cheerio object
 var $data_first_metar_obj;
+var $data_first_taf_obj;
+
 
 
 // 페이지 콜 부분
@@ -59,6 +61,7 @@ exports.index = function(req, res) {
 			obsrv_time_diff : obsrv_time_diff, 
 			//cheerio obj
 			$data_first_metar_obj : $data_first_metar_obj,
+			$data_first_taf_obj : $data_first_taf_obj,
 			
 			//airp perf data
 			Perf152_data_TO_Gnd_Roll : Perf152_data_TO_Gnd_Roll,
@@ -165,7 +168,20 @@ var j = schedule
 
 					request(
 							url,
-							function(err, res, html) {parser.parseString(html,
+							function(err, res, html) {
+								//insert for cheerio new way handling
+								$ = cheerio.load(html,{  xmlMode: true	});
+								var $data_first_taf = cheerio.load($('data').children().first().html(),{xmlMode:true});
+								$data_first_taf_obj = $data_first_taf;								
+								
+								/*$data_first_metar('forecast').each(function(inx, ele) {
+										console.log($(ele).html()); }
+									);*/
+								
+								
+								
+								parser.parseString(
+												html,
 												function(err, result) {
 													var taf_raw_text = result.response.data[0].TAF[0].raw_text[0];
 													taf_data = taf_raw_text;
@@ -201,7 +217,7 @@ var j = schedule
 					
 				});
 
-
+/*
  // 두번째 스케줄
 var j2 = schedule2.scheduleJob(rule2, function() {
 	// aopa page crowingstart
@@ -247,7 +263,7 @@ var j2 = schedule2.scheduleJob(rule2, function() {
 
 });
 
-
+*/
 
 
 // 콜백 해결 구분

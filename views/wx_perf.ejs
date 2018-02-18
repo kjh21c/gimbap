@@ -851,9 +851,7 @@ function scJQElementsAdd(iLine) {
 
 <link rel="stylesheet" type="text/css" href="../stylesheets/link_for_act.css">
 
-<div id="mySidenav" class="sidenav">
-  <a href="http://www.ActualIMC.COM" id="about" target="_parent">Actual IMC.COM</a>
-</div>
+
 
 
 <div id="idJSSpecChar" style="display: none;"></div> 
@@ -987,7 +985,7 @@ var scMsgDefScInit = "";
        </td><td style="border-width: 0px; padding: 0px; width: 50%;" class="scFormBlockAlign">METAR Data</td>
        <td align="right">
  			 <input type="radio" name="loc" value="hio" checked="checked"  />HIO
-                      <input type="radio" name="loc" value="s39" />S39
+                
 		</td>
        </td></tr></tbody></table></td>
        
@@ -1018,7 +1016,53 @@ var scMsgDefScInit = "";
 				<li class="metar-col metar-col-tempdew metar-col-cond"><span
 					class="temperatures"><b><%= Math.round(temperature*1.8+32,0)%>° /<%= Math.round(metar_dewp*1.8+32,0)%>°</b><br>
 					<i><%= temperature%>° /<%= metar_dewp%>°</i><br></span><span class="altimeter">A<%= Math.round(metar_alti*100,0)%><br></span></li>
-			</ul></li>
+			</ul></li></ul>
+			<ul class="taf-here">
+			<li>
+			<ul class="taf-ct">
+				<li class="taf-col taf-col-info">TAF 
+				</li>
+					<li class="taf-col taf-col-body">
+
+ 				
+				<!-- loop -->
+				<% $data_first_taf_obj('forecast').each(function(inx, ele) { %>
+				<% var fcst_time_from = $(ele).find('fcst_time_from').text()%>
+ 				<% var fcst_time_to = $(ele).find('fcst_time_to').text()%>
+ 				<% var change_indicator = $(ele).find('change_indicator').text()%>
+ 				<% var wind_dir_degrees = $(ele).find('wind_dir_degrees').text()%>
+ 				<% var wind_speed_kt = $(ele).find('wind_speed_kt').text()%>
+ 				<% var visibility_statute_mi = $(ele).find('visibility_statute_mi').text()%>
+ 				<% var wx_string = $(ele).find('wx_string').text()%>
+ 				<% var sky_condition = $(ele).find('sky_condition')%>
+					<ul class="taf-forecast-ct">
+ 					<li class="taf-forecast-col taf-forecast-col-time">
+ 						<% // fcst_time_from + fcst_time_to %>
+ 						<%= change_indicator %>
+ 						<%	var obsrv_time = new Date(fcst_time_from); %>
+ 						<%= obsrv_time.toLocaleTimeString() %>
+ 					
+ 					</li>
+ 						<li class="taf-forecast-col taf-forecast-col-wind taf-forecast-col-viz taf-col-cloud">
+	 						<span
+									class="winds b<%=wind_dir_degrees%> "><span>&nbsp;</span><%=wind_dir_degrees%> @ <%=wind_speed_kt%> kts</span><br>
+							<span   class="visibility ">Visibility: <b><%=visibility_statute_mi%></b></span>
+							<%= wx_string %>
+						</li>
+		 				<li class="taf-forecast-col taf-forecast-col-cond taf-forecast-col-cloud">
+		 					<b><% sky_condition.each(function(inx, ele) { %>
+							<%-$(ele).attr('sky_cover') + '-' + $(ele).attr('cloud_base_ft_agl') +'<br>'%>	
+ 																						    			<%}); %></b>
+		 				</li>
+		 				</ul>
+	 			
+ 																						    <%}); %>
+			    		<!-- loop -->
+					
+				</ul>
+				</li>
+ 				</ul>
+			</li>
 	</ul>
   
     <%-bloco_contents_metar%>
