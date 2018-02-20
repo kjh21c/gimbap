@@ -100,8 +100,9 @@ var j = schedule
 								+ ":" + time.getSeconds());
 					}
 					// METAR
+					//var airport = "KHIO";
 					var airport = "KS39";
-					var url_syntex = "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString="+airport+"&hoursBeforeNow=2";
+					var url_syntex = "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString="+airport+"&hoursBeforeNow=48";
 					var url = {
 						url : url_syntex,
 						json : false
