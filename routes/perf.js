@@ -31,8 +31,8 @@ var area_forecast = '',
 var $aopa_weather,
 	$aopa_weather_taf;
 //cheerio object
-var $data_first_metar_obj;
-var $data_first_taf_obj;
+var $data_first_metar_obj = cheerio.load('');
+var $data_first_taf_obj = cheerio.load('');
 
 
 
@@ -117,6 +117,7 @@ var j = schedule
 						
 						//cheerio 이용 개선
 						$ = cheerio.load(html,{  xmlMode: true	});
+						if ($('data').attr('num_result') == 0 ){return 0; }
 						var $data_first_metar = cheerio.load($('data').children().first().html(),{xmlMode:true});
 						$data_first_metar_obj = $data_first_metar;
 //						$data_first_metar('sky_condition').each(function(inx, ele) {
@@ -169,8 +170,11 @@ var j = schedule
 					request(
 							url,
 							function(err, res, html) {
+								if (err)
+									return 0 ;
 								//insert for cheerio new way handling
 								$ = cheerio.load(html,{  xmlMode: true	});
+								if ($('data').attr('num_result') == 0 ){return 0; }
 								var $data_first_taf = cheerio.load($('data').children().first().html(),{xmlMode:true});
 								$data_first_taf_obj = $data_first_taf;								
 								
