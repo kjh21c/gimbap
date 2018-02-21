@@ -86,10 +86,12 @@ var j = schedule.scheduleJob(
 stationName.forEach(function(elt, i) {
 	var urlText = "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=" +
 			elt +
-			"&hoursBeforeNow=4";
+			"&hoursBeforeNow=24";
 	var url = { url : urlText };
 	
 	request(url,function(err, res, xml){
+		if(err)
+			return 0;
 		parser.parseString(xml, function(err, result) {
 			//metarInfo["error"] = true;
 			if(!err){
