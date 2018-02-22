@@ -31,8 +31,8 @@ var area_forecast = '',
 var $aopa_weather,
 	$aopa_weather_taf;
 //cheerio object
-var $data_first_metar_obj = cheerio.load('');
-var $data_first_taf_obj = cheerio.load('');
+var $data_first_metar_obj;
+var $data_first_taf_obj ;
 
 
 
@@ -114,7 +114,8 @@ var j = schedule
 					};
 
 					request(url,function(err, res, html) {
-						
+						if(err)
+							return 0 ; 
 						//cheerio 이용 개선
 						$ = cheerio.load(html,{  xmlMode: true	});
 						if ($('data').attr('num_result') == 0 ){return 0; }
