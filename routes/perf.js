@@ -36,7 +36,7 @@ var $aopa_weather,
 //cheerio object
 var $data_first_metar_obj;
 var $data_first_taf_obj ;
-
+var forecast_string ;
 
 
 // 페이지 콜 부분
@@ -71,6 +71,9 @@ exports.index = function(req, res) {
 			sunsettwilight: sunsettwilight,
 			sunrisetwilight: sunrisetwilight,
 			metar_wx_string:metar_wx_string,
+			forecast_string:forecast_string,
+			
+			
 			//airp perf data
 			Perf152_data_TO_Gnd_Roll : Perf152_data_TO_Gnd_Roll,
 			Perf152_data_TO_50_Clr : Perf152_data_TO_50_Clr,
@@ -244,17 +247,28 @@ var j = schedule
 					    }
 					});
 					
-					// windaloft get
-					var url_loft = "https://forecast.weather.gov/MapClick.php?lat=45.5404&lon=-122.9498&unit=0&lg=english&FcstType=dwml";
-					request(url_loft, function (err, res, html) {
+					// weather forecast
+					var options = {
+							  url: 'https://api.weather.gov/gridpoints/PQR/103,105/forecast',
+							  headers: {
+							    'Accept': 'application/vnd.noaa.dwml+xml.',
+							    'User-Agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:50.0) Gecko/20100101 Firefox/50.0'
+							  }
+							};
+					request(options, function (err, res, html) {
 					    if (!err) {
-					        var $ = cheerio.load(html);
-
+					        var data_JSON = JSON.parse(html);
+					        var forecast_date = data_JSON.properties.periods[1].name;
+					        var forecast_context = data_JSON.properties.periods[1].shortForecast;
+					        forecast_string = forecast_date + ' is ' +forecast_context ;
+					        
 					        //데이터 처리
-					        wind_aloft = $("pre").html();
+					        
 					     
 					    }
 					});	
+					
+					
 					
 					
 				});
