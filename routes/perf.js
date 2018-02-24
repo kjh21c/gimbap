@@ -28,6 +28,9 @@ var taf_data,metar_flight_category;
 var area_forecast = '',
 	wind_aloft = '',
 	notam_url = 'https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=DOMESTIC&retrieveLocId=HIO&actionType=notamRetrievalByICAOs';
+// new ver val
+var sunsettime , sunrisetime , sunsettwilight, sunrisetwilight;
+var metar_wx_string;
 var $aopa_weather,
 	$aopa_weather_taf;
 //cheerio object
@@ -62,7 +65,12 @@ exports.index = function(req, res) {
 			//cheerio obj
 			$data_first_metar_obj : $data_first_metar_obj,
 			$data_first_taf_obj : $data_first_taf_obj,
-			
+			//sun set time
+			sunsettime  : sunsettime ,
+			sunrisetime : sunrisetime ,
+			sunsettwilight: sunsettwilight,
+			sunrisetwilight: sunrisetwilight,
+			metar_wx_string:metar_wx_string,
 			//airp perf data
 			Perf152_data_TO_Gnd_Roll : Perf152_data_TO_Gnd_Roll,
 			Perf152_data_TO_50_Clr : Perf152_data_TO_50_Clr,
@@ -124,6 +132,8 @@ var j = schedule
 //						$data_first_metar('sky_condition').each(function(inx, ele) {
 //							console.log('checkthis'+$(ele).attr('sky_cover')+$(ele).attr('cloud_base_ft_agl')); }
 //						);
+						
+						metar_wx_string = $data_first_metar('wx_string').html();
 						
 						//이전 버젼 방식
 								if(!err){
@@ -218,6 +228,33 @@ var j = schedule
 					    }
 					});
 					
+					
+					//sunset rise times
+					var url_forecast = 'https://sunrise-sunset.org/us/portland-or';
+					request(url_forecast, function (err, res, html) {
+					    if (!err) {
+					        var $ = cheerio.load(html);
+					        //데이터 처리
+					        sunrisetime  = $('#today .sunrise .time').text();
+					        sunrisetwilight = $('#today .sunrise .twilight').text();
+					        sunsettime= $('#today .sunset .time').text();
+					        sunsettwilight= $('#today .sunset .twilight').text();
+						        
+					        
+					    }
+					});
+					
+					// windaloft get
+					var url_loft = "https://forecast.weather.gov/MapClick.php?lat=45.5404&lon=-122.9498&unit=0&lg=english&FcstType=dwml";
+					request(url_loft, function (err, res, html) {
+					    if (!err) {
+					        var $ = cheerio.load(html);
+
+					        //데이터 처리
+					        wind_aloft = $("pre").html();
+					     
+					    }
+					});	
 					
 					
 				});
