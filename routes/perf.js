@@ -4,7 +4,7 @@
 //timer
 var schedule = require('node-schedule');
 var rule = new schedule.RecurrenceRule();
-rule.second = [ 0, 15, 45];
+rule.second = [ 20, 40, 58];
  // 매 시간 15초 마다 수행
 
 var schedule2 = require('node-schedule');
