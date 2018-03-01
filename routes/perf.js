@@ -129,14 +129,12 @@ var j = schedule
 							return 0 ; 
 						//cheerio 이용 개선
 						$ = cheerio.load(html,{  xmlMode: true	});
-						if ($('data').attr('num_result') == 0 ){return 0; }
-						var $data_first_metar = cheerio.load($('data').children().first().html(),{xmlMode:true});
-						$data_first_metar_obj = $data_first_metar;
-//						$data_first_metar('sky_condition').each(function(inx, ele) {
-//							console.log('checkthis'+$(ele).attr('sky_cover')+$(ele).attr('cloud_base_ft_agl')); }
-//						);
-						
-						metar_wx_string = $data_first_metar('wx_string').html();
+						if ($('data').attr('num_results') != 0  )
+						{
+							console.log('$(data).attr(num_results)' + $('data').attr('num_results') );
+							var $data_first_metar = cheerio.load($('data').children().first().html(),{xmlMode:true});
+							$data_first_metar_obj = $data_first_metar;
+							metar_wx_string = $data_first_metar('wx_string').html();
 						
 						//이전 버젼 방식
 								if(!err){
@@ -173,7 +171,9 @@ var j = schedule
 															obsrv_time = obsrv_time.getHours() + ":" + obsrv_time.getMinutes();
 														}
 												});
-								}});
+								}
+						}
+					});
 
 					// TAF
 					var url = {
@@ -188,24 +188,19 @@ var j = schedule
 									return 0 ;
 								//insert for cheerio new way handling
 								$ = cheerio.load(html,{  xmlMode: true	});
-								if ($('data').attr('num_result') == 0 ){return 0; }
-								var $data_first_taf = cheerio.load($('data').children().first().html(),{xmlMode:true});
-								$data_first_taf_obj = $data_first_taf;								
+								if ($('data').attr('num_results') != 0 )
+								{ 
+									var $data_first_taf = cheerio.load($('data').children().first().html(),{xmlMode:true});
+									$data_first_taf_obj = $data_first_taf;								
 								
-								/*$data_first_metar('forecast').each(function(inx, ele) {
-										console.log($(ele).html()); }
-									);*/
-								
-								
-								
-								parser.parseString(
-												html,
-												function(err, result) {
-													var taf_raw_text = result.response.data[0].TAF[0].raw_text[0];
-													taf_data = taf_raw_text;
-												});
+									parser.parseString(
+													html,
+													function(err, result) {
+														var taf_raw_text = result.response.data[0].TAF[0].raw_text[0];
+														taf_data = taf_raw_text;
+													});
+								}
 							});
-										
 							
 					// af get
 					var url_af = "http://aviationweather.gov/areafcst/data?region=sfo";
