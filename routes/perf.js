@@ -4,8 +4,8 @@
 //timer
 var schedule = require('node-schedule');
 var rule = new schedule.RecurrenceRule();
-rule.second = [ 0, 30, 15, 45];
- // 매 시간 30분 마다 수행
+rule.second = [ 0, 15, 45];
+ // 매 시간 15초 마다 수행
 
 var schedule2 = require('node-schedule');
 var rule2 = new schedule2.RecurrenceRule();
@@ -129,7 +129,7 @@ var j = schedule
 							return 0 ; 
 						//cheerio 이용 개선
 						$ = cheerio.load(html,{  xmlMode: true	});
-						if ($('data').attr('num_results') != 0  )
+						if ($('data').attr('num_results') != 0  && $('data').attr('num_results') )
 						{
 							console.log('$(data).attr(num_results)' + $('data').attr('num_results') );
 							var $data_first_metar = cheerio.load($('data').children().first().html(),{xmlMode:true});
@@ -188,7 +188,7 @@ var j = schedule
 									return 0 ;
 								//insert for cheerio new way handling
 								$ = cheerio.load(html,{  xmlMode: true	});
-								if ($('data').attr('num_results') != 0 )
+								if ($('data').attr('num_results') != 0 && $('data').attr('num_results'))
 								{ 
 									var $data_first_taf = cheerio.load($('data').children().first().html(),{xmlMode:true});
 									$data_first_taf_obj = $data_first_taf;								
