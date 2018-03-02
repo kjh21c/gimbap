@@ -1,22 +1,4 @@
-#mySidenav a {
-    position: absolute; /* Position them relative to the browser window */
-    right: 0px; /* Position them outside of the screen */
-    transition: 0.3s; /* Add transition on hover */
-    padding: 15px; /* 15px padding */
-    text-decoration: none; /* Remove underline */
-    font-size: 15px; /* Increase font size */
-    color: white; /* White text color */
-    border-radius: 5px 0px 0px 5px; /* Rounded corners on the top right and bottom right side */
-}
-
-#mySidenav a:hover {
-    right: 0; /* On mouse-over, make the elements appear as they should */
-}
-
-/* The about link: 20px from the top with a green background */
-#about {
-    top: 20px;
-    background-color: #4CAF50;
-}
-
-.timeblinker{animation: timeblinker 5s linear infinite;}@keyframes timeblinker {50% { opacity: 0.5; }}
+#mySidenav a{position:absolute;right:0px;transition:0.3s;padding:15px;text-decoration:none;font-size:15px;color:white;border-radius:5px 0px 0px 5px;}
+#mySidenav a:hover{right:0;}
+#about{top:20px;background-color:#4CAF50;}
+.timeblinker{animation:timeblinker 5s linear infinite;}@keyframes timeblinker{50%{opacity:0.5;}}

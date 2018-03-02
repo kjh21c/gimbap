@@ -22,7 +22,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile); // added
 
-app.use(express.compress());
+app.use(express.compress()); //gzip 사용
 app.use(express.favicon());
 
 //default, short ,tiny, and dev
