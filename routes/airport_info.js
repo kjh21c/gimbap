@@ -1,3 +1,5 @@
+//http crowing
+var cheerio = require('cheerio');
 //http
 var request = require('request');
 //xml
@@ -8,6 +10,9 @@ var schedule = require('node-schedule');
 var rule = new schedule.RecurrenceRule();
 rule.miniute = 5;
 // 5분시행
+
+var metarContaioner = []; 
+
 
 exports.index = function(req, res){
 	res.render('lnd_airports', { title: 'Hillsboro Weather Information' ,
@@ -58,7 +63,6 @@ var rwyInfo = {
 
 var stationName = ['KHIO', 'KEUG', 'KOLM'//,'KCVO','KDLS'
                    ,'KS39'];
-var metarContaioner = []; 
 
 //initiate for cvo only
 metarContaioner["KCVO"] = {'elevation_ft':''
@@ -90,8 +94,9 @@ stationName.forEach(function(elt, i) {
 	var url = { url : urlText };
 	
 	request(url,function(err, res, xml){
-		if(err)
-			return 0;
+		$ = cheerio.load(xml,{  xmlMode: true	});
+		if ($('data').attr('num_results') != 0  && $('data').attr('num_results') )
+		{
 		parser.parseString(xml, function(err, result) {
 			//metarInfo["error"] = true;
 			if(!err){
@@ -134,6 +139,7 @@ stationName.forEach(function(elt, i) {
 				//console.log(metarContaioner.KHIO);
 			} 
 		});
+		}
 	} );
 	
 });

@@ -1,0 +1,167 @@
+@import url("/includes/wxcore/res/common.css?_dc=20160616");
+
+/*
+ * WxCore-specific styles tailored to the look of AOPA Airports
+ */
+.metar-col, .taf-col, .taf-forecast-col  {
+	font: 14px arial,tahoma,helvetica,sans-serif;
+}
+
+.taf-col, .taf-forecast-col  {
+	font: 12px arial,tahoma,helvetica,sans-serif;
+}
+
+
+/*
+.metar-col-info {
+	width: 50px;
+}
+*/
+.taf-here, .metars-here{
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0.5em;
+}
+
+.taf-col-info {
+	width: 50px;
+	left: 4px;
+}
+.taf-col.taf-col-body {
+	margin-left: 0px;
+}
+.taf-forecast-col-time {
+	width: 90px;
+}
+.taf-forecast-col-wind {
+	width: 90px;
+}
+
+.taf-ct {
+	border-bottom: solid 1px black;
+	margin-bottom: 3px;
+	min-height: 70px;
+	padding-bottom:10px;
+}
+
+.taf-forecast ul, .metar-ct, .taf-raw, .metar-raw {
+	background: #FFFFFF;
+	overflow: auto;
+	width: 100%;
+	padding:0;
+}
+.taf-forecast.even ul, .metar-ct.even, .metar-raw.even, .taf-raw.even {
+	background: transparent;
+}
+
+.metar-col .VFR, .metar-col .MVFR, .metar-col .IFR, .metar-col .LIFR {
+	font-weight:bold;
+	padding: 0 3px;
+	border-style: solid;
+	border-width: 1px;
+	text-align: center;
+	display: block;
+}
+
+.metar-col .VFR {
+	border-color: #ccc;
+	color:white;
+	background-color: #009a00;
+}
+
+.metar-col .MVFR {
+	border-color: #ccc;
+	color: white;
+	background-color: blue;
+}
+
+.metar-col .IFR {
+	border-color: #ccc;
+	color: white;
+	background-color: red;
+}
+
+.metar-col .LIFR {
+	border-color: #ccc;
+	color: black;
+	background-color: #f0f;
+}
+
+.metar-col .winds span, .taf-forecast-col .winds span {
+	width: 12px;
+	height: 12px;
+	margin-right: 2px;
+	display: inline-block;
+	background-image: url("../images/bearing-sprite.png");
+	background-repeat:no-repeat;
+}
+
+.metar-col .alert, .taf-forecast-col .alert {
+	display: inline-block;
+	margin: 2px 0;
+	line-height: 1;
+	border: none;
+	background-image: none;
+	padding: 0;
+	/*color: red;*/
+	color: #000;
+	background: #f88985;
+}
+
+.metar-col .warn, .taf-forecast-col .warn {
+	font-style: italic;
+	color: #f93;
+}
+
+.metar-col .alert:after,
+.taf-col .alert:after {
+	display: none;
+}
+
+.metar-raw a:link, .metar-raw a:hover, .taf-raw a:link, .taf-raw a:hover {
+	color: #333;
+	text-decoration: none;
+}
+#airport-directory .taf-raw table td {
+	padding: 0 2px;
+}
+.taf-raw .taf-col-0 { width: 105px }
+.taf-raw .taf-col-1 { width: 75px }
+.taf-raw .taf-col-2 { width: 35px }
+.taf-raw .taf-col-3 { width: 50px }
+
+.metar-col .winds.bVRB span, .taf-forecast-col .winds.bVRB span { display: none }
+.metar-col .winds.b010 span, .taf-forecast-col .winds.b010 span { background-position: 0 -12px }
+.metar-col .winds.b020 span, .taf-forecast-col .winds.b020 span { background-position: 0 -24px }
+.metar-col .winds.b030 span, .taf-forecast-col .winds.b030 span { background-position: 0 -36px }
+.metar-col .winds.b040 span, .taf-forecast-col .winds.b040 span { background-position: 0 -48px }
+.metar-col .winds.b050 span, .taf-forecast-col .winds.b050 span { background-position: 0 -60px }
+.metar-col .winds.b060 span, .taf-forecast-col .winds.b060 span { background-position: 0 -72px }
+.metar-col .winds.b070 span, .taf-forecast-col .winds.b070 span { background-position: 0 -84px }
+.metar-col .winds.b080 span, .taf-forecast-col .winds.b080 span { background-position: 0 -96px }
+.metar-col .winds.b090 span, .taf-forecast-col .winds.b090 span { background-position: 0 -108px }
+.metar-col .winds.b100 span, .taf-forecast-col .winds.b100 span { background-position: 0 -120px }
+.metar-col .winds.b110 span, .taf-forecast-col .winds.b110 span { background-position: 0 -132px }
+.metar-col .winds.b120 span, .taf-forecast-col .winds.b120 span { background-position: 0 -144px }
+.metar-col .winds.b130 span, .taf-forecast-col .winds.b130 span { background-position: 0 -156px }
+.metar-col .winds.b140 span, .taf-forecast-col .winds.b140 span { background-position: 0 -168px }
+.metar-col .winds.b150 span, .taf-forecast-col .winds.b150 span { background-position: 0 -180px }
+.metar-col .winds.b160 span, .taf-forecast-col .winds.b160 span { background-position: 0 -192px }
+.metar-col .winds.b170 span, .taf-forecast-col .winds.b170 span { background-position: 0 -204px }
+.metar-col .winds.b180 span, .taf-forecast-col .winds.b180 span { background-position: 0 -216px }
+.metar-col .winds.b190 span, .taf-forecast-col .winds.b190 span { background-position: 0 -228px }
+.metar-col .winds.b200 span, .taf-forecast-col .winds.b200 span { background-position: 0 -240px }
+.metar-col .winds.b210 span, .taf-forecast-col .winds.b210 span { background-position: 0 -252px }
+.metar-col .winds.b220 span, .taf-forecast-col .winds.b220 span { background-position: 0 -264px }
+.metar-col .winds.b230 span, .taf-forecast-col .winds.b230 span { background-position: 0 -276px }
+.metar-col .winds.b240 span, .taf-forecast-col .winds.b240 span { background-position: 0 -288px }
+.metar-col .winds.b250 span, .taf-forecast-col .winds.b250 span { background-position: 0 -300px }
+.metar-col .winds.b260 span, .taf-forecast-col .winds.b260 span { background-position: 0 -312px }
+.metar-col .winds.b270 span, .taf-forecast-col .winds.b270 span { background-position: 0 -324px }
+.metar-col .winds.b280 span, .taf-forecast-col .winds.b280 span { background-position: 0 -336px }
+.metar-col .winds.b290 span, .taf-forecast-col .winds.b290 span { background-position: 0 -348px }
+.metar-col .winds.b300 span, .taf-forecast-col .winds.b300 span { background-position: 0 -360px }
+.metar-col .winds.b310 span, .taf-forecast-col .winds.b310 span { background-position: 0 -372px }
+.metar-col .winds.b320 span, .taf-forecast-col .winds.b320 span { background-position: 0 -384px }
+.metar-col .winds.b330 span, .taf-forecast-col .winds.b330 span { background-position: 0 -396px }
+.metar-col .winds.b340 span, .taf-forecast-col .winds.b340 span { background-position: 0 -408px }
+.metar-col .winds.b350 span, .taf-forecast-col .winds.b350 span { background-position: 0 -420px }

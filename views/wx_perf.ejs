@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!DOCTYPE html >
 <html dir="LTR">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -1941,32 +1941,7 @@ function scMobileDisplayControl(sOption) {
   		rangeSlider();
  		Do_PerfCalculation();
   	});
-	/*
- 		  $("[type=range]").change(function(){
- 			var this_id =  $(this).attr("id");
-			var newval = $(this).val();
- 			if(this_id==("weather_perf_pressure"))
- 				  $("#weather_perf_pressure_text").attr("value", newval);
- 			if(this_id==("weather_perf_elev"))
-				  $("#weather_perf_elev_text").attr("value", newval);
- 			if(this_id==("weather_perf_temp"))
-				  $("#weather_perf_temp_text").attr("value", newval);
-			//cal!!
- 			Do_PerfCalculation();
- 		  });
- 		  $("[type=number]").change(function(){
- 	 			var this_id =  $(this).attr("id");
- 				var newval = $(this).val();
- 	 			if(this_id==("weather_perf_pressure"))
- 	 				  $("#weather_perf_pressure_text").attr("value", newval);
- 	 			if(this_id==("weather_perf_elev"))
- 					  $("#weather_perf_elev_text").attr("value", newval);
- 	 			if(this_id==("weather_perf_temp"))
- 					  $("#weather_perf_temp_text").attr("value", newval);
- 				//cal!!
- 	 			Do_PerfCalculation();
- 	 		  });
- 	}); */
+
  	// pada 계산
  	function Do_PerfCalculation(){
  		var elev = Number($("#weather_perf_elev_text").val());
@@ -2001,29 +1976,13 @@ function scMobileDisplayControl(sOption) {
  		rangeSlider();
  		
  	
-/*   		
- 		var locSelector = function(){
- 		var locRadio = $('#loc');
- 		locRadio.each(function(){
- 			var whereami = $(this).value;
- 			if(whereami == hio)
- 				$("#weather_perf_elev_text").attr("value", "208");
-			if(whereami == s39)
- 				$("#weather_perf_elev_text").attr("value", "3251");
- 		});
- 	}
- 	
- 	locSelector();  
- 	*/
+
  	
     </script>
     
     <!-- iframe custom  -->
 	<script language="javascript">
-		//if(document.parentNode!=null){
-		//	parent.postMessage(document.body.scrollHeight,"http://gimbap.000webhostapp.com");
-		//}
-		
+	
 		parent.postMessage(document.body.scrollHeight,"*");
 		
 		//window.addEventListener("resize", resizeFunction);
