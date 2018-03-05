@@ -1982,21 +1982,26 @@ function scMobileDisplayControl(sOption) {
     
     <!-- iframe custom  -->
 	<script language="javascript">
-	
-		parent.postMessage(document.body.scrollHeight,"*");
-		
+		//parent.postMessage(document.body.scrollHeight,"*");
 		//window.addEventListener("resize", resizeFunction);
-		
-		function resizeFunction(){
+		//function resizeFunction(){
 		//	if(document.parentNode!=null){
-				parent.postMessage(document.body.scrollHeight,"*");
+		//		parent.postMessage(document.body.scrollHeight,"*");
 			//}
-		}
+		//}
 	</script>
-	<script>
-	$(document).ready( function(){
-	parent.keseyo('takbae');
-	});
+ <!-- parentNode custom  -->
+	<script language="javascript">
+		$(document).ready(function() {
+				parent.postMessage('takbae_page_done', "*");
+		});
+		
+		//receive
+		window.addEventListener('message', function(event) {
+				var obj = JSON.parse(event.data);
+				$(obj.name).append(obj.city);
+			});
+		
 	</script>
 
 </html>
