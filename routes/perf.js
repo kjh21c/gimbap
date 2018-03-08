@@ -39,7 +39,7 @@ var $data_first_taf_obj ;
 var forecast_string ;
 
 
-// 페이지 콜 부분
+//페이지 콜 부분
 exports.index = function(req, res) {
 	readData(function() {
 		res.render('wx_perf', {
@@ -73,6 +73,71 @@ exports.index = function(req, res) {
 			metar_wx_string:metar_wx_string,
 			forecast_string:forecast_string,
 			
+			//airp perf data
+			Perf152_data_TO_Gnd_Roll : Perf152_data_TO_Gnd_Roll,
+			Perf152_data_TO_50_Clr : Perf152_data_TO_50_Clr,
+			Perf152_data_Land_Gnd_Roll : Perf152_data_Land_Gnd_Roll,
+			Perf152_data_Rate_Of_Climb : Perf152_data_Rate_Of_Climb,
+			Perf172_data_TO_Gnd_Roll : Perf172_data_TO_Gnd_Roll,
+			Perf172_data_TO_50_Clr : Perf172_data_TO_50_Clr,
+			Perf172_data_Land_Gnd_Roll : Perf172_data_Land_Gnd_Roll,
+			Perf172_data_Rate_Of_Climb : Perf172_data_Rate_Of_Climb,
+			bloco_title_10 : 'Area Forecast',
+			bloco_title_11 : 'Wind_Aloft',
+			bloco_title_12 : 'NOTAM',
+			bloco_title_13 : 'Convective SIGMETs, SIGMETs',
+			bloco_title_14 : 'Surface Analysis',
+			bloco_title_15 : 'Weather Dipiction',
+			bloco_title_16 : 'RADAR Summary',
+			
+			bloco_contents_10 : area_forecast,
+			bloco_contents_11 : wind_aloft,
+			bloco_contents_12 : notam_url,
+			bloco_contents_13 : 'bloco_contents_13',
+			bloco_contents_14 : 'bloco_contents_14',
+			bloco_contents_15 : 'bloco_contents_15',
+			bloco_contents_16 : 'bloco_contents_16',
+			bloco_contents_metar : $aopa_weather,
+			bloco_contents_taf : $aopa_weather_taf
+	});
+	});
+	var time = new Date(); 
+	console.log("!!!Page Accessed "+ time.getDay() + "th," +  time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()); 
+
+};
+//페이지 콜 부분
+exports.weather_etc_data = function(req, res) {
+	readData(function() {
+		res.render('weather_etc_data', {
+			title : 'KHIO METAR & 152 Perf. Infomation',
+			pa : pa,
+			da : da,
+			loc_id : 'hio',
+			temperature : temperature,
+			pressure : pressure,
+			elevation : elevation , 
+			metar : metar_data,
+			taf : taf_data,
+			surfaceWind : metar_wind,
+			surfaceWindVel : metar_windVel,
+			crossWind1 : crossWind1,
+			crossWind2 : crossWind2,
+			metar_alti : metar_alti , 
+			metar_dewp : metar_dewp,
+			metar_visi : metar_visi,
+			metar_flight_category: metar_flight_category,
+			obsrv_time: obsrv_time, 
+			obsrv_time_diff : obsrv_time_diff, 
+			//cheerio obj
+			$data_first_metar_obj : $data_first_metar_obj,
+			$data_first_taf_obj : $data_first_taf_obj,
+			//sun set time
+			sunsettime  : sunsettime ,
+			sunrisetime : sunrisetime ,
+			sunsettwilight: sunsettwilight,
+			sunrisetwilight: sunrisetwilight,
+			metar_wx_string:metar_wx_string,
+			forecast_string:forecast_string,
 			
 			//airp perf data
 			Perf152_data_TO_Gnd_Roll : Perf152_data_TO_Gnd_Roll,
@@ -100,16 +165,251 @@ exports.index = function(req, res) {
 			bloco_contents_16 : 'bloco_contents_16',
 			bloco_contents_metar : $aopa_weather,
 			bloco_contents_taf : $aopa_weather_taf
-			
-			  
-
-		});
+	});
 	});
 	var time = new Date(); 
 	console.log("!!!Page Accessed "+ time.getDay() + "th," +  time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()); 
 
+};
+
+//페이지 콜 부분
+exports.distance_172 = function(req, res) {
+	readData(function() {
+		res.render('distance_172', {
+			title : 'KHIO METAR & 172 Perf. Infomation',
+			pa : pa,
+			da : da,
+			loc_id : 'hio',
+			temperature : temperature,
+			pressure : pressure,
+			elevation : elevation , 
+			metar : metar_data,
+			taf : taf_data,
+			surfaceWind : metar_wind,
+			surfaceWindVel : metar_windVel,
+			crossWind1 : crossWind1,
+			crossWind2 : crossWind2,
+			metar_alti : metar_alti , 
+			metar_dewp : metar_dewp,
+			metar_visi : metar_visi,
+			metar_flight_category: metar_flight_category,
+			obsrv_time: obsrv_time, 
+			obsrv_time_diff : obsrv_time_diff, 
+			//cheerio obj
+			$data_first_metar_obj : $data_first_metar_obj,
+			$data_first_taf_obj : $data_first_taf_obj,
+			//sun set time
+			sunsettime  : sunsettime ,
+			sunrisetime : sunrisetime ,
+			sunsettwilight: sunsettwilight,
+			sunrisetwilight: sunrisetwilight,
+			metar_wx_string:metar_wx_string,
+			forecast_string:forecast_string,
+			
+			//airp perf data
+			Perf152_data_TO_Gnd_Roll : Perf152_data_TO_Gnd_Roll,
+			Perf152_data_TO_50_Clr : Perf152_data_TO_50_Clr,
+			Perf152_data_Land_Gnd_Roll : Perf152_data_Land_Gnd_Roll,
+			Perf152_data_Rate_Of_Climb : Perf152_data_Rate_Of_Climb,
+			Perf172_data_TO_Gnd_Roll : Perf172_data_TO_Gnd_Roll,
+			Perf172_data_TO_50_Clr : Perf172_data_TO_50_Clr,
+			Perf172_data_Land_Gnd_Roll : Perf172_data_Land_Gnd_Roll,
+			Perf172_data_Rate_Of_Climb : Perf172_data_Rate_Of_Climb,
+			bloco_title_10 : 'Area Forecast',
+			bloco_title_11 : 'Wind_Aloft',
+			bloco_title_12 : 'NOTAM',
+			bloco_title_13 : 'Convective SIGMETs, SIGMETs',
+			bloco_title_14 : 'Surface Analysis',
+			bloco_title_15 : 'Weather Dipiction',
+			bloco_title_16 : 'RADAR Summary',
+			
+			bloco_contents_10 : area_forecast,
+			bloco_contents_11 : wind_aloft,
+			bloco_contents_12 : notam_url,
+			bloco_contents_13 : 'bloco_contents_13',
+			bloco_contents_14 : 'bloco_contents_14',
+			bloco_contents_15 : 'bloco_contents_15',
+			bloco_contents_16 : 'bloco_contents_16',
+			bloco_contents_metar : $aopa_weather,
+			bloco_contents_taf : $aopa_weather_taf
+	});
+	});
+	var time = new Date(); 
+	console.log("!!!Page Accessed "+ time.getDay() + "th," +  time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()); 
 
 };
+
+//페이지 콜 부분
+exports.distance_152 = function(req, res) {
+	readData(function() {
+		res.render('distance_152', {
+			title : 'KHIO METAR & 152 Perf. Infomation',
+			pa : pa,
+			da : da,
+			loc_id : 'hio',
+			temperature : temperature,
+			pressure : pressure,
+			elevation : elevation , 
+			metar : metar_data,
+			taf : taf_data,
+			surfaceWind : metar_wind,
+			surfaceWindVel : metar_windVel,
+			crossWind1 : crossWind1,
+			crossWind2 : crossWind2,
+			metar_alti : metar_alti , 
+			metar_dewp : metar_dewp,
+			metar_visi : metar_visi,
+			metar_flight_category: metar_flight_category,
+			obsrv_time: obsrv_time, 
+			obsrv_time_diff : obsrv_time_diff, 
+			//cheerio obj
+			$data_first_metar_obj : $data_first_metar_obj,
+			$data_first_taf_obj : $data_first_taf_obj,
+			//sun set time
+			sunsettime  : sunsettime ,
+			sunrisetime : sunrisetime ,
+			sunsettwilight: sunsettwilight,
+			sunrisetwilight: sunrisetwilight,
+			metar_wx_string:metar_wx_string,
+			forecast_string:forecast_string,
+			
+			//airp perf data
+			Perf152_data_TO_Gnd_Roll : Perf152_data_TO_Gnd_Roll,
+			Perf152_data_TO_50_Clr : Perf152_data_TO_50_Clr,
+			Perf152_data_Land_Gnd_Roll : Perf152_data_Land_Gnd_Roll,
+			Perf152_data_Rate_Of_Climb : Perf152_data_Rate_Of_Climb,
+			Perf172_data_TO_Gnd_Roll : Perf172_data_TO_Gnd_Roll,
+			Perf172_data_TO_50_Clr : Perf172_data_TO_50_Clr,
+			Perf172_data_Land_Gnd_Roll : Perf172_data_Land_Gnd_Roll,
+			Perf172_data_Rate_Of_Climb : Perf172_data_Rate_Of_Climb,
+			bloco_title_10 : 'Area Forecast',
+			bloco_title_11 : 'Wind_Aloft',
+			bloco_title_12 : 'NOTAM',
+			bloco_title_13 : 'Convective SIGMETs, SIGMETs',
+			bloco_title_14 : 'Surface Analysis',
+			bloco_title_15 : 'Weather Dipiction',
+			bloco_title_16 : 'RADAR Summary',
+			
+			bloco_contents_10 : area_forecast,
+			bloco_contents_11 : wind_aloft,
+			bloco_contents_12 : notam_url,
+			bloco_contents_13 : 'bloco_contents_13',
+			bloco_contents_14 : 'bloco_contents_14',
+			bloco_contents_15 : 'bloco_contents_15',
+			bloco_contents_16 : 'bloco_contents_16',
+			bloco_contents_metar : $aopa_weather,
+			bloco_contents_taf : $aopa_weather_taf
+	});
+	});
+};
+//페이지 콜 부분
+exports.weather_data = function(req, res) {
+	readData(function() {
+		res.render('weather_data', {
+			title : 'KHIO METAR & 152 Perf. Infomation',
+			pa : pa,
+			da : da,
+			loc_id : 'hio',
+			temperature : temperature,
+			pressure : pressure,
+			elevation : elevation , 
+			metar : metar_data,
+			taf : taf_data,
+			surfaceWind : metar_wind,
+			surfaceWindVel : metar_windVel,
+			crossWind1 : crossWind1,
+			crossWind2 : crossWind2,
+			metar_alti : metar_alti , 
+			metar_dewp : metar_dewp,
+			metar_visi : metar_visi,
+			metar_flight_category: metar_flight_category,
+			obsrv_time: obsrv_time, 
+			obsrv_time_diff : obsrv_time_diff, 
+			//cheerio obj
+			$data_first_metar_obj : $data_first_metar_obj,
+			$data_first_taf_obj : $data_first_taf_obj,
+			//sun set time
+			sunsettime  : sunsettime ,
+			sunrisetime : sunrisetime ,
+			sunsettwilight: sunsettwilight,
+			sunrisetwilight: sunrisetwilight,
+			metar_wx_string:metar_wx_string,
+			forecast_string:forecast_string,
+			
+			//airp perf data
+			Perf152_data_TO_Gnd_Roll : Perf152_data_TO_Gnd_Roll,
+			Perf152_data_TO_50_Clr : Perf152_data_TO_50_Clr,
+			Perf152_data_Land_Gnd_Roll : Perf152_data_Land_Gnd_Roll,
+			Perf152_data_Rate_Of_Climb : Perf152_data_Rate_Of_Climb,
+			Perf172_data_TO_Gnd_Roll : Perf172_data_TO_Gnd_Roll,
+			Perf172_data_TO_50_Clr : Perf172_data_TO_50_Clr,
+			Perf172_data_Land_Gnd_Roll : Perf172_data_Land_Gnd_Roll,
+			Perf172_data_Rate_Of_Climb : Perf172_data_Rate_Of_Climb,
+			bloco_title_10 : 'Area Forecast',
+			bloco_title_11 : 'Wind_Aloft',
+			bloco_title_12 : 'NOTAM',
+			bloco_title_13 : 'Convective SIGMETs, SIGMETs',
+			bloco_title_14 : 'Surface Analysis',
+			bloco_title_15 : 'Weather Dipiction',
+			bloco_title_16 : 'RADAR Summary',
+			
+			bloco_contents_10 : area_forecast,
+			bloco_contents_11 : wind_aloft,
+			bloco_contents_12 : notam_url,
+			bloco_contents_13 : 'bloco_contents_13',
+			bloco_contents_14 : 'bloco_contents_14',
+			bloco_contents_15 : 'bloco_contents_15',
+			bloco_contents_16 : 'bloco_contents_16',
+			bloco_contents_metar : $aopa_weather,
+			bloco_contents_taf : $aopa_weather_taf
+	});
+	});
+	var time = new Date(); 
+	console.log("!!!Page Accessed "+ time.getDay() + "th," +  time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()); 
+
+};
+
+//페이지 콜 부분
+exports.metar_data = function(req, res) {
+	readData(function() {
+		res.render('metar_data', {
+			title : 'KHIO METAR & 152 Perf. Infomation',
+			pa : pa,
+			da : da,
+			loc_id : 'hio',
+			temperature : temperature,
+			pressure : pressure,
+			elevation : elevation , 
+			metar : metar_data,
+			taf : taf_data,
+			surfaceWind : metar_wind,
+			surfaceWindVel : metar_windVel,
+			crossWind1 : crossWind1,
+			crossWind2 : crossWind2,
+			metar_alti : metar_alti , 
+			metar_dewp : metar_dewp,
+			metar_visi : metar_visi,
+			metar_flight_category: metar_flight_category,
+			obsrv_time: obsrv_time, 
+			obsrv_time_diff : obsrv_time_diff, 
+			//cheerio obj
+			$data_first_metar_obj : $data_first_metar_obj,
+			$data_first_taf_obj : $data_first_taf_obj,
+			//sun set time
+			sunsettime  : sunsettime ,
+			sunrisetime : sunrisetime ,
+			sunsettwilight: sunsettwilight,
+			sunrisetwilight: sunrisetwilight,
+			metar_wx_string:metar_wx_string,
+			forecast_string:forecast_string,
+			
+			bloco_contents_metar : $aopa_weather,
+			bloco_contents_taf : $aopa_weather_taf
+	});
+	});
+
+};
+
 
 
 

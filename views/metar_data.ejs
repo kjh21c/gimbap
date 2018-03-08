@@ -1,0 +1,90 @@
+<!DOCTYPE html >
+<html dir="LTR">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>METAR Information - Hillsboro Airport for Aircraft
+		Performance Calculation and Weather Prediction</title>
+	<link rel="stylesheet" href="../wx_page_files/wxcore.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="../wx_page_files/common.css" type="text/css" media="screen">
+</head>
+<body>
+	<!--  custom metar  -->
+	<ul style="" class="metars-here" id="ext-gen23">
+		<li id="ext-gen54">
+			<ul class="metar-ct" id="ext-gen55">
+				<li class="metar-col metar-col-info"><b>KHIO</b><br> <span
+					class="<%=metar_flight_category%>"><%=metar_flight_category%></span>223
+					MSL<br></li>
+				<li class="metar-col metar-col-time"><%=obsrv_time%><br> <i>(<%=obsrv_time_diff%>
+						minutes ago)</i></li>
+				<li class="metar-col metar-col-wind metar-col-viz metar-col-cloud"><span
+					class="winds b<%=surfaceWind%> "><span>&nbsp;</span><%=surfaceWind%>
+						@ <%=surfaceWindVel%> kts</span><br> <span class="visibility ">Visibility:
+						<b><%=metar_visi%></b>
+					</span><br> <b><%
+						$data_first_metar_obj('sky_condition').each(function(inx, ele) {
+						%> <%-$(ele).attr('sky_cover') + '-' +
+						$(ele).attr('cloud_base_ft_agl') +'<br>'%> <%}); %>
+					</b>
+					</li>
+				<li class="metar-col metar-col-tempdew metar-col-cond"><span
+					class="temperatures"><b><%=
+							Math.round(temperature*1.8+32,0)%>° /<%=
+							Math.round(metar_dewp*1.8+32,0)%>°</b><br> <i><%=
+							temperature%>° /<%= metar_dewp%>°</i><br></span><span class="altimeter">A<%=
+						Math.round(metar_alti*100,0)%><br>
+					</span> <span class="wx_string "><b><%=metar_wx_string%></b></span><br>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<ul class="taf-here">
+		<li>
+			<ul class="taf-ct">
+				<li class="taf-col taf-col-info">TAF</li>
+				<li class="taf-col taf-col-body">
+					
+					<!-- loop --> 
+					<% $data_first_taf_obj('forecast').each(function(inx,
+					ele) { %> <% var fcst_time_from =
+					$(ele).find('fcst_time_from').text()%> <% var fcst_time_to =
+					$(ele).find('fcst_time_to').text()%> <% var change_indicator =
+					$(ele).find('change_indicator').text()%> <% var wind_dir_degrees =
+					$(ele).find('wind_dir_degrees').text()%> <% var wind_speed_kt =
+					$(ele).find('wind_speed_kt').text()%> <% var visibility_statute_mi
+					= $(ele).find('visibility_statute_mi').text()%> <% var wx_string =
+					$(ele).find('wx_string').text()%> <% var sky_condition =
+					$(ele).find('sky_condition')%>
+					<!-- loop html --> 
+					<ul class="taf-forecast-ct">
+						<li class="taf-forecast-col taf-forecast-col-time"><% //
+							fcst_time_from + fcst_time_to %> <%= change_indicator %> <% var
+							obsrv_time = new Date(fcst_time_from); %> <%=
+							obsrv_time.toLocaleTimeString() %></li>
+						<li
+							class="taf-forecast-col taf-forecast-col-wind taf-forecast-col-viz taf-col-cloud">
+							<span class="winds b<%=wind_dir_degrees%> "><span>&nbsp;</span><%=wind_dir_degrees%>
+								@ <%=wind_speed_kt%> kts</span><br> <span class="visibility ">Visibility:
+								<b><%=visibility_statute_mi%></b>
+							</span> <%= wx_string %>
+						</li>
+						<li
+							class="taf-forecast-col taf-forecast-col-cond taf-forecast-col-cloud">
+							<b><% sky_condition.each(function(inx, ele) { %>
+								<%-$(ele).attr('sky_cover') + '-' +
+								$(ele).attr('cloud_base_ft_agl') +'<br>'%> <%}); %>
+							</b>
+						</li>
+					</ul> <%}); %> <!-- loop -->
+			</ul>
+		</li>
+	</ul>
+
+	<%-bloco_contents_metar%> <%-bloco_contents_taf%>
+
+	<p id="metar_data"><%= metar%></p>
+  	<p style="color:red">All These values below can be USED ONLY for Refereance</p>
+ 	<p>Civil Twilights :<%=sunrisetwilight%>, <%=sunsettwilight%></p>
+  	<p>Sunrise&Sunset :<%=sunrisetime%> and <%=sunsettime%></p>
+</body>
+</html>

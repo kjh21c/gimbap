@@ -1,0 +1,289 @@
+<!DOCTYPE html >
+<html dir="LTR">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>METAR Information - Hillsboro Airport for Aircraft
+	Performance Calculation and Weather Prediction</title>
+<link rel="stylesheet" href="../wx_page_files/wxcore.css"
+	type="text/css" media="screen">
+<link rel="stylesheet" href="../wx_page_files/common.css"
+	type="text/css" media="screen">
+<link rel="stylesheet" href="../wx_page_files/peter.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" type="text/css"
+	href="../wx_page_files/Sc8_BlueWood_form.css">
+<link rel="stylesheet" type="text/css"
+	href="../wx_page_files/form_fwm_wx_perf_ltr.css">
+<script type="text/javascript" src="../wx_page_files/jquery.js"></script>
+
+</head>
+<body>
+
+	<table align="center" id="hidden_bloco_2" class="scFormTable"
+		width="100%" style="height: 100%;">
+		<tbody>
+			<tr>
+				<td class="scFormLabelOdd scUiLabelWidthFix css_takeoff_label"
+					id="hidden_field_label_takeoff" style="width: 250px;"><span
+					id="id_label_takeoff">Takeoff C152</span></td>
+			</tr>
+			<tr>
+				<td
+					class="scFormLabelOdd scUiLabelWidthFix
+					css_takeoff_grnd_roll_label"
+					id="hidden_field_label_takeoff_grnd_roll" style="width: 250px;"><span
+					class="scFormRequiredOdd">*</span> <span
+					id="id_label_takeoff_grnd_roll">Ground Roll (ft)</span></td>
+				<td class="scFormDataOdd css_takeoff_grnd_roll_line"
+					id="hidden_field_data_takeoff_grnd_roll" style=""><table
+						style="border-width: 0px; border-collapse: collapse; width: 100%; float: right">
+						<tbody>
+							<tr>
+								<td class="scFormDataFontOdd css_takeoff_grnd_roll_line"
+									style="vertical-align: top; padding: 0px"><span
+									id="id_read_on_takeoff_grnd_roll"
+									class="sc-ui-readonly-takeoff_grnd_roll css_takeoff_grnd_roll_line"
+									style="display: none;">0.0</span><span
+									id="id_read_off_takeoff_grnd_roll" style="white-space: nowrap;">
+										<input
+										class="sc-js-input scFormObjectOdd css_takeoff_grnd_roll_obj"
+										style="text-align: right;" id="id_sc_field_takeoff_grnd_roll"
+										type="text" name="takeoff_grnd_roll"
+										value='<%=Perf152_data_TO_Gnd_Roll%>' size="8" maxlength="11">
+								</span></td>
+							</tr>
+							<tr>
+								<td style="vertical-align: top; padding: 1px 0px 0px 0px"><table
+										class="scFormFieldErrorTable" style="display: none"
+										id="id_error_display_takeoff_grnd_roll_frame">
+										<tbody>
+											<tr>
+												<td class="scFormFieldErrorMessage"><span
+													id="id_error_display_takeoff_grnd_roll_text"></span></td>
+											</tr>
+										</tbody>
+									</table></td>
+							</tr>
+						</tbody>
+					</table></td>
+			</tr>
+			<tr>
+				<td
+					class="scFormLabelOdd scUiLabelWidthFix css_takeoff_gr_over50_label"
+					id="hidden_field_label_takeoff_gr_over50" style="width: 250px;"><span
+					class="scFormRequiredOdd">*</span> <span
+					id="id_label_takeoff_gr_over50">Ground Roll Over 50</span></td>
+				<td class="scFormDataOdd css_takeoff_gr_over50_line"
+					id="hidden_field_data_takeoff_gr_over50" style=""><table
+						style="border-width: 0px; border-collapse: collapse; width: 100%; float: right">
+						<tbody>
+							<tr>
+								<td class="scFormDataFontOdd css_takeoff_gr_over50_line"
+									style="vertical-align: top; padding: 0px"><span
+									id="id_read_on_takeoff_gr_over50"
+									class="sc-ui-readonly-takeoff_gr_over50 css_takeoff_gr_over50_line"
+									style="display: none;">0.0</span><span
+									id="id_read_off_takeoff_gr_over50" style="white-space: nowrap;">
+										<input
+										class="sc-js-input scFormObjectOdd css_takeoff_gr_over50_obj"
+										style="text-align: right;" id="id_sc_field_takeoff_gr_over50"
+										type="text" name="takeoff_gr_over50"
+										value='<%=Perf152_data_TO_50_Clr%>' size="8" maxlength="11">
+								</span></td>
+							</tr>
+							<tr>
+								<td style="vertical-align: top; padding: 1px 0px 0px 0px"><table
+										class="scFormFieldErrorTable" style="display: none"
+										id="id_error_display_takeoff_gr_over50_frame">
+										<tbody>
+											<tr>
+												<td class="scFormFieldErrorMessage"><span
+													id="id_error_display_takeoff_gr_over50_text"></span></td>
+											</tr>
+										</tbody>
+									</table></td>
+							</tr>
+						</tbody>
+					</table></td>
+
+
+
+			</tr>
+			<tr>
+
+
+				<td
+					class="scFormLabelOdd scUiLabelWidthFix css_takeoff_max_climb_label"
+					id="hidden_field_label_takeoff_max_climb" style="width: 250px;"><span
+					class="scFormRequiredOdd">*</span> <span
+					id="id_label_takeoff_max_climb">Max Rate of Climb (SL)
+						(ft/min)</span></td>
+				<td class="scFormDataOdd css_takeoff_max_climb_line"
+					id="hidden_field_data_takeoff_max_climb" style=""><table
+						style="border-width: 0px; border-collapse: collapse; width: 100%; float: right">
+						<tbody>
+							<tr>
+								<td class="scFormDataFontOdd css_takeoff_max_climb_line"
+									style="vertical-align: top; padding: 0px"><span
+									id="id_read_on_takeoff_max_climb"
+									class="sc-ui-readonly-takeoff_max_climb css_takeoff_max_climb_line"
+									style="display: none;">0.0</span><span
+									id="id_read_off_takeoff_max_climb" style="white-space: nowrap;">
+										<input
+										class="sc-js-input scFormObjectOdd css_takeoff_max_climb_obj"
+										style="text-align: right;" id="id_sc_field_takeoff_max_climb"
+										type="text" name="takeoff_max_climb"
+										value='<%=Perf152_data_Rate_Of_Climb%>' size="8"
+										maxlength="11">
+								</span></td>
+							</tr>
+							<tr>
+								<td style="vertical-align: top; padding: 1px 0px 0px 0px"><table
+										class="scFormFieldErrorTable" style="display: none"
+										id="id_error_display_takeoff_max_climb_frame">
+										<tbody>
+											<tr>
+												<td class="scFormFieldErrorMessage"><span
+													id="id_error_display_takeoff_max_climb_text"></span></td>
+											</tr>
+										</tbody>
+									</table></td>
+							</tr>
+						</tbody>
+					</table></td>
+
+			</tr>
+		</tbody>
+	</table>
+
+	<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+		<tbody>
+			<tr valign="top">
+				<td width="100%" height="">
+					<div id="div_hidden_bloco_3">
+						<!-- bloco_c -->
+						<table align="center" id="hidden_bloco_3" class="scFormTable"
+							width="100%" style="height: 100%;">
+							<tbody>
+								<tr>
+									<td class="scFormLabelOdd scUiLabelWidthFix css_landing_label"
+										id="hidden_field_label_landing" style="width: 250px;"><span
+										id="id_label_landing">Landing C152</span></td>
+									<td class="scFormDataOdd css_landing_line"
+										id="hidden_field_data_landing" style=""><table
+											style="border-width: 0px; border-collapse: collapse; width: 100%">
+											<tbody>
+												<tr>
+													<td class="scFormDataFontOdd css_landing_line"
+														style="vertical-align: top; padding: 0px"><span
+														id="id_ajax_label_landing"></span> <input type="hidden"
+														name="landing" value=""></td>
+												</tr>
+												<tr>
+													<td style="vertical-align: top; padding: 1px 0px 0px 0px"><table
+															class="scFormFieldErrorTable" style="display: none"
+															id="id_error_display_landing_frame">
+															<tbody>
+																<tr>
+																	<td class="scFormFieldErrorMessage"><span
+																		id="id_error_display_landing_text"></span></td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+											</tbody>
+										</table></td>
+								</tr>
+								<tr>
+									<td
+										class="scFormLabelOdd scUiLabelWidthFix css_land_arr_distance_label"
+										id="hidden_field_label_land_arr_distance"
+										style="width: 250px;"><span class="scFormRequiredOdd">*</span>
+										<span id="id_label_land_arr_distance">Arr Landing
+											Distance (ft)</span></td>
+									<td class="scFormDataOdd css_land_arr_distance_line"
+										id="hidden_field_data_land_arr_distance" style=""><table
+											style="border-width: 0px; border-collapse: collapse; width: 100%; float: right">
+											<tbody>
+												<tr>
+													<td class="scFormDataFontOdd css_land_arr_distance_line"
+														style="vertical-align: top; padding: 0px"><span
+														id="id_read_on_land_arr_distance"
+														class="sc-ui-readonly-land_arr_distance css_land_arr_distance_line"
+														style="display: none;">0.0</span><span
+														id="id_read_off_land_arr_distance"
+														style="white-space: nowrap;"> <input
+															class="sc-js-input scFormObjectOdd css_land_arr_distance_obj"
+															style="text-align: right;"
+															id="id_sc_field_land_arr_distance" type="text"
+															name="land_arr_distance"
+															value='<%=Math.round(Perf152_data_Land_Gnd_Roll,1)%>'
+															size="8"
+														maxlength="11">
+													</span></td>
+												</tr>
+												<tr>
+													<td style="vertical-align: top; padding: 1px 0px 0px 0px"><table
+															class="scFormFieldErrorTable" style="display: none"
+															id="id_error_display_land_arr_distance_frame">
+															<tbody>
+																<tr>
+																	<td class="scFormFieldErrorMessage"><span
+																		id="id_error_display_land_arr_distance_text"></span></td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+											</tbody>
+										</table></td>
+								</tr>
+								<tr>
+									<td
+										class="scFormLabelOdd scUiLabelWidthFix css_land_best_glide_label"
+										id="hidden_field_label_land_best_glide" style="width: 250px;"><span
+										class="scFormRequiredOdd">*</span> <span
+										id="id_label_land_best_glide">Best Glide (KIAS)</span></td>
+									<td class="scFormDataOdd css_land_best_glide_line"
+										id="hidden_field_data_land_best_glide" style=""><table
+											style="border-width: 0px; border-collapse: collapse; width: 100%; float: right">
+											<tbody>
+												<tr>
+													<td class="scFormDataFontOdd css_land_best_glide_line"
+														style="vertical-align: top; padding: 0px"><span
+														id="id_read_on_land_best_glide"
+														class="sc-ui-readonly-land_best_glide css_land_best_glide_line"
+														style="display: none;">0.0</span><span
+														id="id_read_off_land_best_glide"
+														style="white-space: nowrap;"> <input
+															class="sc-js-input scFormObjectOdd css_land_best_glide_obj"
+															style="text-align: right;"
+															id="id_sc_field_land_best_glide" type="text"
+															name="land_best_glide" value="60" size="8"
+															alt="{datatype: &#39;decimal&#39;, maxLength: 8, precision: 1, decimalSep: &#39;.&#39;, thousandsSep: &#39;,&#39;, thousandsFormat: 1, manualDecimals: true, allowNegative: false, onlyNegative: false, enterTab: false, enterSubmit: false, autoTab: false, selectOnFocus: true, watermark: &#39;&#39;, watermarkClass: &#39;scFormObjectOddWm&#39;, maskChars: &#39;(){}[].,;:-+/ &#39;}"
+															maxlength="11"></span></td>
+												</tr>
+												<tr>
+													<td style="vertical-align: top; padding: 1px 0px 0px 0px"><table
+															class="scFormFieldErrorTable" style="display: none"
+															id="id_error_display_land_best_glide_frame">
+															<tbody>
+																<tr>
+																	<td class="scFormFieldErrorMessage"><span
+																		id="id_error_display_land_best_glide_text"></span></td>
+																</tr>
+															</tbody>
+														</table></td>
+												</tr>
+											</tbody>
+										</table></td>
+								</tr>
+							</tbody>
+						</table>
+					</div> <!-- bloco_f -->
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
