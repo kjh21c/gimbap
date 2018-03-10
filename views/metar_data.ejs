@@ -10,6 +10,8 @@
 <body>
 	<!--  custom metar  -->
 	<ul style="" class="metars-here" id="ext-gen23">
+		<li><b>Check Weather</b></li>
+		<li><i><%=forecast_string%>!</i></li>
 		<li id="ext-gen54">
 			<ul class="metar-ct" id="ext-gen55">
 				<li class="metar-col metar-col-info"><b>KHIO</b><br> <span
@@ -81,10 +83,16 @@
 	</ul>
 
 	<%-bloco_contents_metar%> <%-bloco_contents_taf%>
-
+	<ul>
+	<li>
 	<p id="metar_data"><%= metar%></p>
+	</li><li>
   	<p style="color:red">All These values below can be USED ONLY for Refereance</p>
- 	<p>Civil Twilights :<%=sunrisetwilight%>, <%=sunsettwilight%></p>
-  	<p>Sunrise&Sunset :<%=sunrisetime%> and <%=sunsettime%></p>
+ 	</li><li>
+ 	Civil Twilights :<%=sunrisetwilight%>, <%=sunsettwilight%>
+  	</li><li>
+  	Sunrise&Sunset :<%=sunrisetime%> and <%=sunsettime%>
+	</li>
+	</ul>
 </body>
 </html>
