@@ -31,6 +31,8 @@ var area_forecast = '',
 // new ver val
 var sunsettime , sunrisetime , sunsettwilight, sunrisetwilight;
 var metar_wx_string;
+var metar_gust_string;
+
 var $aopa_weather,
 	$aopa_weather_taf;
 //cheerio object
@@ -71,6 +73,7 @@ exports.index = function(req, res) {
 			sunsettwilight: sunsettwilight,
 			sunrisetwilight: sunrisetwilight,
 			metar_wx_string:metar_wx_string,
+			metar_gust_string:metar_gust_string,
 			forecast_string:forecast_string,
 			
 			//airp perf data
@@ -137,6 +140,8 @@ exports.weather_etc_data = function(req, res) {
 			sunsettwilight: sunsettwilight,
 			sunrisetwilight: sunrisetwilight,
 			metar_wx_string:metar_wx_string,
+			metar_gust_string:metar_gust_string,
+			
 			forecast_string:forecast_string,
 			
 			//airp perf data
@@ -204,6 +209,8 @@ exports.distance_172 = function(req, res) {
 			sunsettwilight: sunsettwilight,
 			sunrisetwilight: sunrisetwilight,
 			metar_wx_string:metar_wx_string,
+			metar_gust_string:metar_gust_string,
+			
 			forecast_string:forecast_string,
 			
 			//airp perf data
@@ -271,6 +278,8 @@ exports.distance_152 = function(req, res) {
 			sunsettwilight: sunsettwilight,
 			sunrisetwilight: sunrisetwilight,
 			metar_wx_string:metar_wx_string,
+			metar_gust_string:metar_gust_string,
+			
 			forecast_string:forecast_string,
 			
 			//airp perf data
@@ -334,6 +343,8 @@ exports.weather_data = function(req, res) {
 			sunsettwilight: sunsettwilight,
 			sunrisetwilight: sunrisetwilight,
 			metar_wx_string:metar_wx_string,
+			metar_gust_string:metar_gust_string,
+			
 			forecast_string:forecast_string,
 			
 			//airp perf data
@@ -401,6 +412,8 @@ exports.metar_data = function(req, res) {
 			sunsettwilight: sunsettwilight,
 			sunrisetwilight: sunrisetwilight,
 			metar_wx_string:metar_wx_string,
+			metar_gust_string:metar_gust_string,
+			
 			forecast_string:forecast_string,
 			
 			bloco_contents_metar : $aopa_weather,
@@ -419,8 +432,9 @@ var j = schedule
 				function() {
 				
 					// METAR
+					var airport_identifire = "KHIO";
 					var url = {
-						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=KHIO&hoursBeforeNow=24",
+						url : "http://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString="+airport_identifire+"&hoursBeforeNow=24",
 						json : false
 					};
 
@@ -435,6 +449,7 @@ var j = schedule
 							var $data_first_metar = cheerio.load($('data').children().first().html(),{xmlMode:true});
 							$data_first_metar_obj = $data_first_metar;
 							metar_wx_string = $data_first_metar('wx_string').html();
+							metar_gust_string = $data_first_metar('wind_gust_kt').html();
 						
 						//이전 버젼 방식
 								if(!err){

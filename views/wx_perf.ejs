@@ -902,11 +902,12 @@ function scJQElementsAdd(iLine) {
 				<li class="metar-col metar-col-time"><%=obsrv_time%><br>
 				<i>(<%=obsrv_time_diff%> minutes ago)</i></li>
 				<li class="metar-col metar-col-wind metar-col-viz metar-col-cloud"><span
-					class="winds b<%=surfaceWind%> "><span>&nbsp;</span><%=surfaceWind%> @ <%=surfaceWindVel%> kts</span><br>
+					class="winds b<%=surfaceWind%> "><span>&nbsp;</span><%=surfaceWind%>@<%=surfaceWindVel%><% if(metar_gust_string){ %><%='(G'+metar_gust_string+')' %><% } %> kts</span><br>
 				<span class="visibility ">Visibility: <b><%=metar_visi%></b></span><br>
 				
 				<b><% $data_first_metar_obj('sky_condition').each(function(inx, ele) { %>
-				<%-$(ele).attr('sky_cover') + '-' + $(ele).attr('cloud_base_ft_agl') +'<br>'%>
+				<%-$(ele).attr('sky_cover')%>
+				<% if($(ele).attr('cloud_base_ft_agl')){%><%-'-' + $(ele).attr('cloud_base_ft_agl') +'<br>'%>  <%} %>
  																						    <%}); %></b>
 				</li>
 				
@@ -970,7 +971,7 @@ function scJQElementsAdd(iLine) {
     
   	<p id="metar_data"><%= metar%></p>
   	<p id="taf_data"><%= taf%></p>
-  	<p style="color:red">All These values below can be USED ONLY for Refereance</p>
+  	<p style="color:red">All These values below can be USED ONLY for Consideration</p>
   	<p>Civil Twilights :<%=sunrisetwilight%>, <%=sunsettwilight%></p>
   	<p>Sunrise&Sunset :<%=sunrisetime%> and <%=sunsettime%></p>
   </td>
@@ -1323,66 +1324,6 @@ function scJQElementsAdd(iLine) {
 <div id="sc-ui-empty-form" class="scFormPageText"
 	style="padding: 10px; text-align: center; font-weight: bold; display: none">No
 	Records Found</div> <a name="bloco_10"></a>
-<table width="100%" height="100%" cellpadding="0"
-	cellspacing="0">
-	<tbody>
-		<tr valign="top">
-			<td width="100%" height="">
-				<div id="div_hidden_bloco_10">
-					<!-- bloco_c -->
-					<table align="center" id="hidden_bloco_10"
-						class="scFormTable" width="100%"
-						style="height: 100%;">
-						<tbody>
-							<tr>
-								<td colspan="2" height="20" class="scFormBlock">
-									<!-- Title -->
-									<table
-										style="padding: 0px; spacing: 0px; border-width: 0px;"
-										width="100%" height="100%">
-										<tbody>
-											<tr>
-												<td align="" valign=""
-													class="scFormBlockFont"><table
-														style="border-collapse: collapse; height: 100%; width: 100%">
-														<tbody>
-															<tr>
-																<td
-																	style="vertical-align: middle; border-width: 0px; padding: 0px 2px 0px 0px">
-																	<img id="SC_blk_pdf0"
-																	src="../wx_page_files/scriptcase__NM__btn__NM__scriptcase8_BlueWood__NM__tree_mais_f.png"
-																	style="border: 0px; float: left"
-																	class="sc-ui-block-control">
-																</td>
-																<td
-																	style="border-width: 0px; padding: 0px; width: 100%;"
-																	class="scFormBlockAlign"> 
-																	<%=bloco_title_10%>
-																</td>
-															</tr>
-														</tbody>
-													</table></td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-							<!-- contents start -->
-							<tr style="display: none;">
-								<td colspan=2>
-									<!-- contents here --> 
-									
-									<pre><%=bloco_contents_10%></pre>
-									
-								</td>
-							</tr>
-						</tbody>
-					</table>
-			</td>
-			
-		</tr>
-	</tbody>
-</table>
 														
 <!-- bloco_f -->
 <!--  jk  -->

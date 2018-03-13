@@ -7,9 +7,13 @@
 	<link rel="stylesheet" href="../wx_page_files/wxcore.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="../wx_page_files/common.css" type="text/css" media="screen">
 </head>
-<body>
+<body style="margin:0px">
 	<!--  custom metar  -->
 	<ul style="" class="metars-here" id="ext-gen23">
+
+		<li>Civil Twilights :<%=sunrisetwilight%>, <%=sunsettwilight%></li>
+		<li>Sunrise&Sunset :<%=sunrisetime%> and <%=sunsettime%></li>
+		<li>.</li>
 		<li><b>Check Weather</b></li>
 		<li><i><%=forecast_string%>!</i></li>
 		<li id="ext-gen54">
@@ -20,22 +24,22 @@
 				<li class="metar-col metar-col-time"><%=obsrv_time%><br> <i>(<%=obsrv_time_diff%>
 						minutes ago)</i></li>
 				<li class="metar-col metar-col-wind metar-col-viz metar-col-cloud"><span
-					class="winds b<%=surfaceWind%> "><span>&nbsp;</span><%=surfaceWind%>
-						@ <%=surfaceWindVel%> kts</span><br> <span class="visibility ">Visibility:
-						<b><%=metar_visi%></b>
-					</span><br> <b><%
+					class="winds b<%=surfaceWind%> "><span>&nbsp;</span><%=surfaceWind%>@<%=surfaceWindVel%><%
+						if(metar_gust_string){ %><%='(G'+metar_gust_string+')' %><% } %>
+						kts</span><br> <span class="visibility ">Visibility: <b><%=metar_visi%></b>
+				</span><br> <b><%
 						$data_first_metar_obj('sky_condition').each(function(inx, ele) {
-						%> <%-$(ele).attr('sky_cover') + '-' +
-						$(ele).attr('cloud_base_ft_agl') +'<br>'%> <%}); %>
-					</b>
-					</li>
+						%> <%-$(ele).attr('sky_cover')%> <%
+						if($(ele).attr('cloud_base_ft_agl')){%><%-'-' +
+						$(ele).attr('cloud_base_ft_agl') +'<br>'%> <%} %> <%}); %>
+				</b></li>
 				<li class="metar-col metar-col-tempdew metar-col-cond"><span
 					class="temperatures"><b><%=
 							Math.round(temperature*1.8+32,0)%>° /<%=
 							Math.round(metar_dewp*1.8+32,0)%>°</b><br> <i><%=
 							temperature%>° /<%= metar_dewp%>°</i><br></span><span class="altimeter">A<%=
 						Math.round(metar_alti*100,0)%><br>
-					</span> <span class="wx_string "><b><%=metar_wx_string%></b></span><br>
+				</span> <span class="wx_string "><b><%=metar_wx_string%></b></span><br>
 				</li>
 			</ul>
 		</li>
@@ -86,12 +90,6 @@
 	<ul>
 	<li>
 	<p id="metar_data"><%= metar%></p>
-	</li><li>
-  	<p style="color:red">All These values below can be USED ONLY for Refereance</p>
- 	</li><li>
- 	Civil Twilights :<%=sunrisetwilight%>, <%=sunsettwilight%>
-  	</li><li>
-  	Sunrise&Sunset :<%=sunrisetime%> and <%=sunsettime%>
 	</li>
 	</ul>
 </body>
