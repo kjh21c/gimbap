@@ -55,7 +55,13 @@
 				<td
 					class="scFormLabelOdd scUiLabelWidthFix css_weath_press_alt_label"
 					id="hidden_field_label_weath_press_alt" style="width: 250px;">
+					<ul><li>
 					<span id="id_label_weath_press_alt">Pressure Altitude (ft)</span>
+					</li>
+					<li>
+					(29.92-<i><b><%=pressure.toFixed(2)%></b></i>)*1000+208=
+					</li>
+					</ul>
 				</td>
 				<td class="scFormDataOdd css_weath_press_alt_line"
 					id="hidden_field_data_weath_press_alt" style=""><table
@@ -79,8 +85,13 @@
 				<td
 					class="scFormLabelOdd scUiLabelWidthFix css_weath_dens_alt_label"
 					id="hidden_field_label_weath_dens_alt" style="width: 250px;">
-
+					<ul><li>
 					<span id="id_label_weath_dens_alt">Density Altitude(ft)</span>
+					</li>
+					<li>
+					<%= pa %> + 120(<i><b><%=temperature%></b></i>-15)=
+					</li>
+					</ul>
 				</td>
 				<td class="scFormDataOdd css_weath_dens_alt_line"
 					id="hidden_field_data_weath_dens_alt" style=""><table
